@@ -3,10 +3,9 @@
 node_modules
 bower_components
 .sass-cache/
-logs/
-node_modules
-bower_components
-
+logs
+/node_modules
+/bower_components
 config/cloud.json
 config/cloud-resources.raml
 config/sandboxdb.yaml
