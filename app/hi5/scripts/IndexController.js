@@ -2,8 +2,11 @@ angular
   .module('hi5')
   .controller('IndexController', function($scope, supersonic) {
     // Controller functionality here
-
+    $scope.numTimers = 0;
     $scope.watchID = null;
+    $scope.timers = {
+    	giving : false 
+    };
 
     
 
@@ -13,19 +16,28 @@ angular
 		window.ondevicemotion = function(motionEvent){
 			var acc = motionEvent.acceleration;
 
-			if(Math.abs(acc.z)  > 4){
-		    	supersonic.logger.debug("Interval: " + motionEvent.interval + " Z-Accleration: " + acc.z + " Gravity Z-Accleration: " + accIncludingGravity.z);
+			supersonic.logger.debug(acc.z);
+
+			if(Math.abs(acc.z)  > 7){
+				$scope.$apply($scope.highfive = "You are awesome");
 		    }
+
+		    setTimeout(function(){
+		    	$scope.stopAccelerometer();
+		    	// cb();
+		    }, 10000);
+
+		    $scope.timers.giving = true;
+
+		    $scope.numTimers++;
 	    };
     }
 
 
-    $scope.stopAccelerometer = function(){
+    $scope.stopAccelerometer = function(timer){
     	supersonic.logger.debug('Calling stop');
-
-    	if($scope.watchID){
-    		// supersonic.device.accelerometer.clearWatch($scope.watchID);
-    		$scope.watchID = null;
-    	}
+    	$scope.highfive = "";
+    	window.ondevicemotion = null;
+		$scope.timers[timer] = false;
     };
   });
