@@ -7,7 +7,7 @@ module.exports =
     {
       title: "Index"
       id: "index"
-      location: "example#getting-started" # Supersonic module#view type navigation
+      location: "hi5#main" # Supersonic module#view type navigation
     }
     {
       title: "Settings"
@@ -45,4 +45,4 @@ module.exports =
   #
   # initialView:
   #   id: "initialView"
-  #   location: "example#initial-view"
+  #   location: "hi5#main"
