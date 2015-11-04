@@ -15,9 +15,9 @@ module.exports =
       location: "hi5#index"
     }
     {
-      title: "Internet"
-      id: "internet"
-      location: "http://google.com" # URLs are supported!
+      title: "Users"
+      id: "users"
+      location: "user#index" # URLs are supported!
     }
   ]
 
