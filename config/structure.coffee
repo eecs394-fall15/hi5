@@ -7,12 +7,12 @@ module.exports =
     {
       title: "Index"
       id: "index"
-      location: "hi5#main" # Supersonic module#view type navigation
+      location: "hi5#index" # Supersonic module#view type navigation
     }
     {
       title: "Settings"
       id: "settings"
-      location: "hi5#index"
+      location: "hi5#send"
     }
     {
       title: "Users"
@@ -25,15 +25,12 @@ module.exports =
   #   location: "example#getting-started"
 
   preloads: [
-    {
-      id: "learn-more"
-      location: "example#learn-more"
-    }
-    {
-      id: "using-the-scanner"
-      location: "example#using-the-scanner"
-    }
+
   ]
+
+  initialView:
+    id: "initialView"
+    location: "login#index"
 
   # drawers:
   #   left:

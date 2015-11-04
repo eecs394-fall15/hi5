@@ -1,21 +1,10 @@
 <div ng-controller="IndexController">
+	<super-navbar>
+		<super-navbar-title>Inbox</super-navbar-title>
+	</super-navbar>
 
-  <super-navbar>
-    <super-navbar-title>
-      Index
-    </super-navbar-title>
-  </super-navbar>
-
-  <div class="padding">
-    <button class="button button-positive" ng-click="initWatching()">Watch</button>
-    <button class="button button-positive" ng-click="stopAccelerometer()">Stop</button>
-    <h1>{{highfive}}</h1>
-  </div>
-
-  <div class="list inbox">
-  	<a class="item item-icon-left" ng-repeat="hi5 in hi5s">
-  		<i ng-class="{}"></i> {{hi5.sender}}
-  	</a>
-  </div>
-
+	  <!-- <img src="/icons/hi5.gif"></img> -->
+	<ul class="list">
+		<li class="item" ng-repeat="friend in recieved">{{friend}}</li>
+	</ul>
 </div>
