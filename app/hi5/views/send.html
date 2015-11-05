@@ -6,16 +6,30 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div class="padding">
-    <button class="button button-positive" ng-click="initWatching()">Watch</button>
-    <button class="button button-positive" ng-click="stopAccelerometer()">Stop</button>
+  <div ng-hide="highfive">
+    <ul class="list" ng-hide="users.length == 0">
+      <li class="item item-checkbox" ng-repeat="user in users">
+        <label class="checkbox">
+          <input type="checkbox" ng-model="user.selected" ng-change="select(user)">
+        </label>
+        {{user.username}}
+      </li>
+    </ul>
+    <h4 ng-show="users.length == 0" class="assertive padding">
+      No users found. Create one?
+    </h4>
+  </div>
+
+  <div ng-show="highfive">
     <h1>{{highfive}}</h1>
   </div>
 
-  <div class="list inbox">
-  	<a class="item item-icon-left" ng-repeat="hi5 in hi5s">
-  		<i ng-class="{}"></i>{{hi5.sender}}
-  	</a>
+  <button class="button button-block button-positive icon super-paper-airplane footer" ng-if="buttonActive" ng-click="initWatching()">
+  </button>
+  <button class="button button-block button-positive footer" ng-if="highfive" ng-click="clear()">
+    Clear
+  </button>
+  <div style="position:fixed;z-index: 10000000; /* above everything else */top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.8);" ng-show="watching"> 
+    <h1 style="text-align:center; margin-top:50%; display:block; color:white;">Start High Fiving</h1>
   </div>
-
 </div>
