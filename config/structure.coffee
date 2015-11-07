@@ -16,7 +16,7 @@ module.exports =
     }
     {
       title: "Users"
-      id: "users"
+      id: "internet"
       location: "user#index" # URLs are supported!
     }
   ]

@@ -5,6 +5,8 @@
 
 	  <!-- <img src="/icons/hi5.gif"></img> -->
 	<ul class="list">
-		<li class="item" ng-repeat="friend in recieved">{{friend}}</li>
+		<super-navigate location="hi5#hand" ng-repeat="friend in recieved">
+			<li class="item">{{friend}}</li>
+		</super-navigate>
 	</ul>
 </div>
