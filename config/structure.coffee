@@ -10,7 +10,7 @@ module.exports =
       location: "hi5#mailbox" # Supersonic module#view type navigation
     }
     {
-      title: "Settings"
+      title: "Send"
       id: "settings"
       location: "hi5#send"
     }

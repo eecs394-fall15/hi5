@@ -7,20 +7,35 @@
   </super-navbar>
 
   <div ng-hide="highfive">
+
+    <!-- List of friends -->
     <ul class="list" ng-hide="users.length == 0">
       <li class="item item-checkbox" ng-repeat="user in users">
         <label class="checkbox">
-          <input type="checkbox" ng-model="user.selected" ng-change="select(user)">
+          <input type="checkbox" ng-model="user.selected">
         </label>
         {{user.username}}
       </li>
     </ul>
+
+    <!-- Prompt for no friends/users -->
     <h4 ng-show="users.length == 0" class="assertive padding">
       No users found.
     </h4>
+
+    <!-- Buttons to send and clear selections -->
+    <button 
+      class="button button-block button-positive icon super-paper-airplane footer" 
+      ng-if="buttonActive" ng-click="initWatching()">
+    </button>
+
+    <button class="button button-block button-positive footer" 
+      ng-if="highfive" ng-click="clear()">
+      Clear
+    </button>
   </div>
 
-
+  <!-- Display selected highfive -->
   <div ng-show="highfive">
     <h1>{{highfive}}</h1>
   </div>
