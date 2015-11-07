@@ -16,20 +16,21 @@
       </li>
     </ul>
     <h4 ng-show="users.length == 0" class="assertive padding">
-      No users found. Create one?
+      No users found.
     </h4>
   </div>
+
 
   <div ng-show="highfive">
     <h1>{{highfive}}</h1>
   </div>
 
-  <button class="button button-block button-positive icon super-paper-airplane footer" ng-if="buttonActive" ng-click="initWatching()">
+  <button class="button button-block button-positive icon super-paper-airplane footer" ng-if="enableButtons" ng-click="initWatching()">
   </button>
   <button class="button button-block button-positive footer" ng-if="highfive" ng-click="clear()">
     Clear
   </button>
-  <div style="position:fixed;z-index: 10000000; /* above everything else */top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.8);" ng-show="watching"> 
+  <div style="position:fixed;z-index: 10000000; /* above everything else */top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.8);" ng-show="watching">
     <h1 style="text-align:center; margin-top:50%; display:block; color:white;">Start High Fiving</h1>
   </div>
 </div>
