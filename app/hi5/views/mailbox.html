@@ -1,0 +1,10 @@
+<div ng-controller="MailboxController">
+	<super-navbar>
+		<super-navbar-title>Inbox</super-navbar-title>
+	</super-navbar>
+
+	  <!-- <img src="/icons/hi5.gif"></img> -->
+	<ul class="list">
+		<li class="item" ng-repeat="highfive in highfives">{{highfive.senderName}}</li>
+	</ul>
+</div>
