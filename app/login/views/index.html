@@ -6,18 +6,30 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div class="padding">
-    <div class="list">
-		<label class="item item-input item-floating-label">
-			<span class="input-label">Username</span>
-			<input type="text" placeholder="Username">
-		</label>
-		<label class="item item-input item-floating-label">
-			<span class="input-label">Password</span>
-			<input type="text" placeholder="Password">
-		</label>
-	</div>
-    <button class="button button-block button-positive" ng-click="login()">Login</button>
-  </div>
+  <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+  <form name="form" ng-submit="login()" role="form">
+      <div class="login list list-inset">
+        <div ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+          <label for="username" class="item item-input">
+            <i class="icon super-person placeholder-icon"></i>
+            <input type="text" name="username" id="username" ng-model="username" placeholder="Username" required />
+          </label>
+        </div>
+        <div ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</div>
+        <br>
+        <div ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+          <label for="password" class="item item-input">
+            <i class="icon super-locked placeholder-icon"></i>
+            <input type="password" name="password" id="password" ng-model="password" placeholder="Password" required />
+          </label>
+        </div>
+        <div ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</div>
+
+        <br></br>
+
+        <button type="submit" ng-disabled="form.$invalid || dataLoading" class="item button button-block button-positive">Login</button>
+        <super-modal-show location="user#new" class="button button-block button-stable">Register</super-modal-show>
+      </div>
+    </form>
 
 </div>
