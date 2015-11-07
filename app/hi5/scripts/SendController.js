@@ -1,6 +1,6 @@
 angular
   .module('hi5')
-  .controller('SendController', function($scope, supersonic, User, UserParse, Parse, Highfive) {
+  .controller('SendController', function($scope, supersonic, Accelerometer, User, UserParse, Parse, Highfive) {
     $scope.numTimers = 0;
     $scope.watchID = null;
     $scope.timers = {
@@ -92,8 +92,6 @@ angular
           });
         }
 
-		    $scope.timers.giving = true;
-		    $scope.numTimers++;
 	    };
     };
 
@@ -101,7 +99,6 @@ angular
     $scope.stopAccelerometer = function(timer){
     	supersonic.logger.info('Calling stop');
     	window.ondevicemotion = null;
-		// $scope.timers[timer] = false;
     };
 
     $scope.clear = function () {
