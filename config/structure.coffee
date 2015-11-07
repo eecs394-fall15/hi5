@@ -5,12 +5,12 @@ module.exports =
   # See styling options for tabs and other native components in app/common/native-styles/ios.css or app/common/native-styles/android.css
   tabs: [
     {
-      title: "Index"
+      title: "Inbox"
       id: "index"
       location: "hi5#index" # Supersonic module#view type navigation
     }
     {
-      title: "Settings"
+      title: "Send"
       id: "settings"
       location: "hi5#send"
     }

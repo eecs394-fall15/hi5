@@ -7,29 +7,42 @@
   </super-navbar>
 
   <div ng-hide="highfive">
+
+    <!-- List of friends -->
     <ul class="list" ng-hide="users.length == 0">
       <li class="item item-checkbox" ng-repeat="user in users">
         <label class="checkbox">
-          <input type="checkbox" ng-model="user.selected" ng-change="select(user)">
+          <input type="checkbox" ng-model="user.selected">
         </label>
         {{user.username}}
       </li>
     </ul>
+
+    <!-- Prompt for no friends/users -->
     <h4 ng-show="users.length == 0" class="assertive padding">
       No users found. Create one?
     </h4>
+
+    <!-- Buttons to send and clear selections -->
+    <button 
+      class="button button-block button-positive icon super-paper-airplane footer" 
+      ng-if="buttonActive" ng-click="initWatching()">
+    </button>
+
+    <button class="button button-block button-positive footer" 
+      ng-if="highfive" ng-click="clear()">
+      Clear
+    </button>
   </div>
 
+  <!-- Display selected highfive -->
   <div ng-show="highfive">
     <h1>{{highfive}}</h1>
   </div>
 
-  <button class="button button-block button-positive icon super-paper-airplane footer" ng-if="buttonActive" ng-click="initWatching()">
-  </button>
-  <button class="button button-block button-positive footer" ng-if="highfive" ng-click="clear()">
-    Clear
-  </button>
-  <div style="position:fixed;z-index: 10000000; /* above everything else */top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.8);" ng-show="watching"> 
+  <!-- Display selected highfive -->
+  <div class="coverall" ng-show="watching"> 
     <h1 style="text-align:center; margin-top:50%; display:block; color:white;">Start High Fiving</h1>
   </div>
+
 </div>

@@ -6,7 +6,9 @@ angular
 		   duration: .5,
 		   curve: "easeInOut"
 		}
-			var animation = supersonic.ui.animate("slideFromRight",options);
+
+		var animation = supersonic.ui.animate("slideFromRight",options);
 		supersonic.ui.initialView.dismiss(animation);
 	}
+
   });

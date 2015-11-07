@@ -1,11 +1,19 @@
+// angular
+//   .module('hi5')
+//   .controller('SendController', function($scope, supersonic, AccelerometerService) {
+//     $scope.users = null;
+//     $scope.selectedUsers = [];
+
+//     $scope.startWatching = AccelerometerService.start;
+//     $scope.stopAccelerometer = AccelerometerService.stop;
+//     $scope.clearHighfive = function () {$scope.highfive = null;};
+
+//     // $scope.users = RequestService.loadUsers();
+// });
+
 angular
   .module('hi5')
   .controller('SendController', function($scope, supersonic, User, UserParse, Parse) {
-    $scope.numTimers = 0;
-    $scope.watchID = null;
-    $scope.timers = {
-    	giving : false 
-    };
     $scope.users = null;
     $scope.buttonActive = 0;
 
@@ -42,21 +50,19 @@ angular
                     });
                 }
 		    }, 2000);
-
-		    $scope.timers.giving = true;
-
-		    $scope.numTimers++;
 	    };
     }
 
     $scope.stopAccelerometer = function(timer){
     	supersonic.logger.info('Calling stop');
     	window.ondevicemotion = null;
-		// $scope.timers[timer] = false;
     };
 
+    /**
+    *   Clears the highfive prompt
+    */
     $scope.clear = function () {
         $scope.highfive = null;
         $scope.stopAccelerometer();
     }
-  });
+});
