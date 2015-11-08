@@ -13,5 +13,17 @@ angular
       });
     }
 
+    // $scope.show = function(){
+    //   var modalView = new supersonic.ui.View("hi5#hand");
+    //   var options = {
+    //     animate: true
+    //   }
+
+    //   supersonic.ui.modal.show(modalView, options);
+    //   setTimeout(function(){
+    //     supersonic.ui.layers.pop();
+    //   }, 3000);
+    // }
+
     $scope.loadHighfives();
   });

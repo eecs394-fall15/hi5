@@ -56,6 +56,8 @@ angular
             for(var i =0; i < recipients.length; ++i){
               Requests.sendHighfive(recipients[i], null, null);
             }
+
+            $scope.clearUsers();
           }
         });   
   	};

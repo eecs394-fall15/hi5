@@ -23,7 +23,7 @@ angular
               opened: false,
               receiver: receiver.id,
               sender: UserParse.current().id,
-              senderName: UserParse.current().name,
+              senderName: UserParse.current().get('username'),
               type: 'highfive'
             };
 
@@ -60,7 +60,7 @@ angular
 		var query = new Parse.Query(UserParse);
 
 		//TODO: check current friends list first
-		
+
 		query.equalTo('username', username);
 		query.find()
 		.then(function(user){
