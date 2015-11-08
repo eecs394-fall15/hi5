@@ -26,7 +26,6 @@ angular
               senderName: UserParse.current().name,
               type: 'highfive'
             };
-   			console.log(receiver);
 
             supersonic.logger.log(receiver.id);
             var newhighfive = new Highfive(highfive);
@@ -36,8 +35,15 @@ angular
             });
 	}
 
-
 	service.loadFriends = function(cb){
+		UserParse.current().get('friends').query().find()
+		.then(function(friends){
+			supersonic.logger.log("Retrieved friends: " + friends.length);
+			cb(friends);
+		});
+	};
+
+	service.loadUsers = function(cb){
 		var query = new Parse.Query(UserParse);
 
 	    query.find()
@@ -50,8 +56,20 @@ angular
 	    });
 	};
 
-	service.addFriend = function(user, newFriend){
+	service.addFriend = function(username, cb){
+		var query = new Parse.Query(UserParse);
 
+		//TODO: check current friends list first
+		
+		query.equalTo('username', username);
+		query.find()
+		.then(function(user){
+	        supersonic.logger.log("Found user");
+			cb(null);
+		}, function(error) {
+			supersonic.logger.log("Didn't find user");
+			cb(error);
+		});
 	};
 
 	service.markViewed = function(){
