@@ -1,8 +1,8 @@
 angular
 .module('common')
 .constant('HifiveTypes', {
-	BASIC : 0,
-	PAPER_AIRPLANE : 1,
-	DUNK : 2,
-	BOOMERANG : 3
+	BASIC : 'basic highfive',
+	PAPER_AIRPLANE : 'paper airplane',
+	DUNK : 'dunkfive',
+	BOOMERANG : 'boomerang'
 });

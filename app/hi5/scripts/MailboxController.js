@@ -5,7 +5,7 @@ angular
     $scope.highfives = null;
 
     $scope.loadHighfives = function(){
-      Requests.loadHifives(function(highfives){
+      Requests.loadHighfives(function(highfives){
         $scope.$apply(function(){
           $scope.showSpinner = false;
           $scope.highfives = highfives;

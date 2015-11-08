@@ -12,7 +12,7 @@
     <ul class="list" ng-hide="users.length == 0">
       <li class="item item-checkbox" ng-repeat="user in users">
         <label class="checkbox">
-          <input type="checkbox" ng-model="user.selected">
+          <input type="checkbox" ng-model="user.selected" ng-change="select(user)">
         </label>
         {{user.username}}
       </li>
@@ -24,27 +24,22 @@
     </h4>
 
     <!-- Buttons to send and clear selections -->
-    <button 
-      class="button button-block button-positive icon super-paper-airplane footer" 
-      ng-if="buttonActive" ng-click="initWatching()">
-    </button>
+    <div class="footer">
+      <button 
+        class="button button-block button-calm icon super-paper-airplane" 
+        ng-show="enableButtons" ng-click="initWatching()">
+        <!-- Send -->
+      </button>
 
-    <button class="button button-block button-positive footer" 
-      ng-if="highfive" ng-click="clear()">
-      Clear
-    </button>
+      <button class="button button-block button-dark" 
+        ng-if="enableButtons" ng-click="clearUsers()">
+        Clear
+      </button>
+    </div>
   </div>
 
-  <!-- Display selected highfive -->
-  <div ng-show="highfive">
-    <h1>{{highfive}}</h1>
-  </div>
 
-  <button class="button button-block button-positive icon super-paper-airplane footer" ng-if="enableButtons" ng-click="initWatching()">
-  </button>
-  <button class="button button-block button-positive footer" ng-if="highfive" ng-click="clear()">
-    Clear
-  </button>
+  <!-- pops up when recording accelerometer -->
   <div style="position:fixed;z-index: 10000000; /* above everything else */top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.8);" ng-show="watching">
     <h1 style="text-align:center; margin-top:50%; display:block; color:white;">Start High Fiving</h1>
   </div>
