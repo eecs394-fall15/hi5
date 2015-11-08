@@ -7,10 +7,8 @@ angular
     	giving : false
     };
     $scope.users = [];
-    $scope.buttonActive = 0;
+
     var flag = false;
-
-
     var selectedUsers = [];
 
     var query = new Parse.Query(UserParse);
@@ -60,19 +58,18 @@ angular
 
     $scope.initWatching = function(){
         $scope.watching = true;
-    	supersonic.logger.info('Calling watch');
-		window.ondevicemotion = function(motionEvent){
-			var acc = motionEvent.acceleration;
-			// supersonic.logger.info(acc.z);
-		    setTimeout(function(){
-                if(Math.abs(acc.z)  > 10){
-                  flag = true;
-                }
-		    }, 2000);
+    	  supersonic.logger.info('Calling watch');
+		    window.ondevicemotion = function(motionEvent){
+  			  var acc = motionEvent.acceleration;
+  			  // supersonic.logger.info(acc.z);
+  		    setTimeout(function(){
+              if(Math.abs(acc.z)  > 10){
+                flag = true;
+              }
+		        }, 2000);
 
-        if (flag){
-          $scope.$apply(function(){
-              var susers = getSelectedUsers();
+        if (flag) {
+          $scope.$apply(function() {
               for (var user in selectedUsers) {
                 highfive = {
                   opened: false,
