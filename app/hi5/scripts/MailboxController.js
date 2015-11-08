@@ -1,6 +1,6 @@
 angular
   .module('hi5')
-  .controller('MailboxController', function($scope, supersonic, HighfiveParse, Highfive, Parse, UserParse) {
+  .controller('MailboxController', function($scope, supersonic, HighfiveParse, Highfive, Parse, UserParse, Accelerometer) {
     $scope.showSpinner = true;
     $scope.highfives = null;
 

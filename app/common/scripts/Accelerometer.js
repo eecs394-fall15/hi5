@@ -13,12 +13,11 @@ angular
 	*	@param {int}	timerLength num ms to record acc data for. Defaults to 2000
 	*	@param {function} cb called with the motion that was identified 
 	*/
-	service.start = function(timerLength, cb){
+	service.start = function(cb, timerLength){
 		timerLength = timerLength || 2000;
-
 		window.ondevicemotion = START_RECORDING;
 
-	    setTimeout(function(cb){
+	    setTimeout(function(){
             service.stop();
             cb(identifyMotion());
 	    }, timerLength);
@@ -41,11 +40,15 @@ angular
 		return numDeleted;
 	};
 
+	service.getData = function(){
+		return accData;
+	};
+
 	/**
 	*	Uses recorded data
 	*	@return	{int} returns the number of data points cleared
 	*/	
-	service.identifyMotion = function(){
+	function identifyMotion(){
 		//assume that there is not data
 		if (accData.length < 10){
 			return null;
@@ -68,35 +71,35 @@ angular
 	*	@return	{array} returns cleaned array
 	*/
 	function clean(){
-		var ret = [];
+		var ret = accData;
 		return ret;
 	}
 
-	/**
-	*	keep only the high acceleration
-	*/
-	function lowPassFilter(){
-		var runningAverage = 0;
-		var ret = [];
+	// /**
+	// *	keep only the high acceleration
+	// */
+	// function lowPassFilter(){
+	// 	var runningAverage = 0;
+	// 	var ret = [];
 		
-		for(var i = 0; i < arr.length; i++){
-			console.log("filtering");
-		}
+	// 	for(var i = 0; i < arr.length; i++){
+	// 		console.log("filtering");
+	// 	}
 
-		return ret;
-	}
+	// 	return ret;
+	// }
 
-	/**
-	*	Function that detects spikes that are defined as 100 ms where
-	*	delta acc > 0.4 between each datapoint
-	*
-	*	@param {array} array of data to check
-	*	return {arrayof(object)} returns array of objects that contain startIndex, stopIndex, and spike-axis  
-	*/
-	function detectSpikes(){
-		//TODO: instead of hardcoding delta threshold, find through filter
-		console.log("detecting");
-	}
+	// *
+	// *	Function that detects spikes that are defined as 100 ms where
+	// *	delta acc > 0.4 between each datapoint
+	// *
+	// *	@param {array} array of data to check
+	// *	return {arrayof(object)} returns array of objects that contain startIndex, stopIndex, and spike-axis  
+	
+	// function detectSpikes(){
+	// 	//TODO: instead of hardcoding delta threshold, find through filter
+	// 	console.log("detecting");
+	// }
 
 	return service;
 });

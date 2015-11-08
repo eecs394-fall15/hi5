@@ -1,17 +1,12 @@
 angular
   .module('hi5')
   .controller('SendController', function($scope, supersonic, Accelerometer, User, UserParse, Parse, Highfive) {
-    $scope.numTimers = 0;
-    $scope.watchID = null;
-    $scope.timers = {
-    	giving : false
-    };
     $scope.users = [];
     $scope.buttonActive = 0;
     var flag = false;
-
-
     var selectedUsers = [];
+
+
 
     var query = new Parse.Query(UserParse);
     query.find().then(function(users) {
