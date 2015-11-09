@@ -16,7 +16,6 @@
   <script src="/components/supersonic/supersonic.js"></script>
   <script src="/components/webcomponentsjs/webcomponents.js"></script>
   <script src="/components/angular-animate/angular-animate.js"></script>
-  <script src-"/components/underscore/underscore.js"></script>
   <script src="//www.parsecdn.com/js/parse-1.6.4.min.js"></script>
   <script src="/components/jquery/dist/jquery.js"></script>
 
@@ -24,7 +23,7 @@
   <script src="/app/<%= module %>.js"></script>
   <% }); %>
 </head>
-<body ng-app="<%= yield.moduleName %>">
+<body ng-app="<%= yield.moduleName %>" class="content">
 
 <%= yield.view %>
 

@@ -13,19 +13,6 @@
     z-index: 1000;
 }
 
-@keyframes highfive-animation {
-    from {height: 0%;
-          width: 0%;}
-    to {height:100%;
-        width: 100%;}
-}
-
-.highfive {
-  animation-name: highfive-animation;
-  animation-duration: 2s;
-}
-
-
 .coverall {
 	position:fixed;
 	z-index: 10000000;
@@ -35,4 +22,11 @@
 	bottom:0;
 	right:0;
 	background:rgba(0,0,0,.8);"
+}
+
+.highfive {
+  display: block;
+  margin: 0 auto;
+  height: 0%;
+  width: 0%;
 }

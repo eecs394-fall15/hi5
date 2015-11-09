@@ -1,3 +1,23 @@
-<div>
+
+<html>
+<head>
+	<script src="/components/jquery/dist/jquery.js"></script>
+	<script>
+		setTimeout(function(){
+			$(document).ready(function() {
+				$(".highfive").animate({
+					height: '100%',
+					width: '100%'
+				}, {
+					speed: 2000,
+					easing: "linear"
+				});
+			})
+		}, 2000);
+	</script>
+</head>
+<div ng-controller="ViewController">
+		<br></br>
+		<br></br>
 	   <img class="highfive" src="/icons/high_five.png"></img>
 </div>

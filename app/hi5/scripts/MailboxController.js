@@ -27,7 +27,7 @@ angular
             highfive.save().then(function(){});
           });
           supersonic.ui.modal.hide(options);
-        }, 2000);
+        }, 4000);
       });
     };
 
