@@ -44,6 +44,7 @@ angular
 
     $scope.initWatching = function(){
         $scope.watching = true;
+
         Accelerometer.start(function(motion){
           if (motion === null){
             supersonic.ui.dialog.alert("No highfive detected");
@@ -59,7 +60,7 @@ angular
 
             $scope.clearUsers();
           }
-        });
+        }, 2000);
   	};
 
     function getSelectedUsers(){

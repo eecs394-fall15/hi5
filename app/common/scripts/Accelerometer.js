@@ -1,6 +1,6 @@
 angular
 .module('common')
-.factory('Accelerometer', function(HighfiveTypes){
+.factory('Accelerometer', function(HighfiveTypes, supersonic){
 	var service = {};
 	var accData = [];
 	var START_RECORDING = function(motionEvent){
@@ -16,9 +16,10 @@ angular
 	service.start = function(cb, timerLength){
 		timerLength = timerLength || 2000;
 		window.ondevicemotion = START_RECORDING;
-
+		supersonic.logger.log('Logging for : ' + timerLength)
 	    setTimeout(function(){
             service.stop();
+            supersonic.logger.log("Stopped");
             cb(identifyMotion());
 	    }, timerLength);
 	};
@@ -58,8 +59,9 @@ angular
 		var filtered = cleanData.filter(function(acc){
 			return Math.abs(acc.z) > 10;
 		})
+
 		if(filtered.length  > 0){
-            return HifiveTypes.BASIC;
+            return HighfiveTypes.BASIC;
         } else {
         	return null;
         }

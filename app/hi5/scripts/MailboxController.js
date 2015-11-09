@@ -34,5 +34,4 @@ angular
     supersonic.ui.views.current.whenVisible( function() {
       $scope.loadHighfives();
     });
-
-  });
+});
