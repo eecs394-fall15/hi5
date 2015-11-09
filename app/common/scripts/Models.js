@@ -22,6 +22,23 @@ angular
   .constant('FriendRequest', supersonic.data.model('FriendRequest'));
 
 
+angular
+  .module('common')
+  .factory('FriendRequestParse', function(Parse, ParseUtils) {
+    var friendrequest = Parse.Object.extend("FriendRequest", {
+      // Instance methods
+    }, {
+      // Class methods
+    });
+
+    var properties = ['status', 'receiver', 'sender', 'createdAt', 'updatedAt', 'ACL', 'senderName'];
+    for (var i = 0; i < properties.length; i++) {
+      ParseUtils.addSetterGetter(friendrequest, properties[i]);
+    }
+
+    return friendrequest;
+});
+
 
 /**************************** Hifives **********************/
 angular

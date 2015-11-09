@@ -1,6 +1,6 @@
 angular
 .module('common')
-.factory('Accelerometer', function(HifiveTypes){
+.factory('Accelerometer', function(HighfiveTypes){
 	var service = {};
 	var accData = [];
 	var START_RECORDING = function(motionEvent){

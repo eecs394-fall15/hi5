@@ -6,16 +6,16 @@ angular
     loadFriends();
 
     $scope.addFriend = function(){
-      supersonic.logger.log("Yup");
-
       var options = {
         title: "Send Friend Request",
         defaultText : ""
       };
 
       supersonic.ui.dialog.prompt("Enter friend's username", options)
-      .then(function(username) {
-        Requests.addFriend(username, function(error){
+      .then(function(promptdata) {
+        var username = promptdata.input;
+
+        Requests.sendFriendRequest(username, function(error){
           if(error){
             supersonic.ui.dialog.alert("Could not find user");
           } else {

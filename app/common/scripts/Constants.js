@@ -1,6 +1,6 @@
 angular
 .module('common')
-.constant('HifiveTypes', {
+.constant('HighfiveTypes', {
 	BASIC : 'basic highfive',
 	PAPER_AIRPLANE : 'paper airplane',
 	DUNK : 'dunkfive',

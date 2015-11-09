@@ -14,11 +14,11 @@ module.exports =
       id: "settings"
       location: "hi5#send"
     }
-    # {
-    #   title: "Users"
-    #   id: "internet"
-    #   location: "user#index" # URLs are supported!
-    # }
+    {
+      title: "Buddies"
+      id: "internet"
+      location: "hi5#friendRequests" # URLs are supported!
+    }
   ]
 
   # rootView:
