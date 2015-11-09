@@ -10,15 +10,15 @@ module.exports =
       location: "hi5#mailbox" # Supersonic module#view type navigation
     }
     {
-      title: "Settings"
+      title: "Send"
       id: "settings"
       location: "hi5#send"
     }
-    {
-      title: "Users"
-      id: "internet"
-      location: "user#index" # URLs are supported!
-    }
+    # {
+    #   title: "Users"
+    #   id: "internet"
+    #   location: "user#index" # URLs are supported!
+    # }
   ]
 
   # rootView:

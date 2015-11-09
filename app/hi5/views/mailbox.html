@@ -1,10 +1,16 @@
 <div ng-controller="MailboxController">
 	<super-navbar>
 		<super-navbar-title>Inbox</super-navbar-title>
+		<super-navbar-button side="right" ng-click="loadHighfives()">
+			Refresh
+		</super-navbar-button>
 	</super-navbar>
 
-	  <!-- <img src="/icons/hi5.gif"></img> -->
 	<ul class="list">
-		<li class="item" ng-repeat="highfive in highfives" ng-click="view()">{{highfive.senderName}}</li>
+
+		<li class="item" ngclick="show()" ng-repeat="highfive in highfives">
+			{{highfive.senderName}}
+		</li>
+
 	</ul>
 </div>

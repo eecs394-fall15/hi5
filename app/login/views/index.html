@@ -6,9 +6,10 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+
   <form name="form" ng-submit="login()" role="form">
       <div class="login list list-inset">
+        <div ng-show="error" class="alert alert-danger">{{ error }}</div>
         <div ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
           <label for="username" class="item item-input">
             <i class="icon super-person placeholder-icon"></i>
@@ -25,10 +26,14 @@
         </div>
         <div ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</div>
 
+
         <br></br>
 
+
         <button type="submit" ng-disabled="form.$invalid || dataLoading" class="item button button-block button-positive">Login</button>
-        <super-modal-show location="user#new" class="button button-block button-stable">Register</super-modal-show>
+        <super-navigate location="login#registration">
+          <button class="button button-block button-stable">Register</button>
+        </super-navigate>
       </div>
     </form>
 

@@ -1,28 +1,29 @@
 angular
   .module('hi5')
-  .controller('MailboxController', function($scope, supersonic, HighfiveParse, Highfive, Parse, UserParse) {
+  .controller('MailboxController', function($scope, supersonic, Requests) {
     $scope.showSpinner = true;
     $scope.highfives = null;
 
-    $scope.view = function() {
-      var view = new supersonic.ui.View("hi5#view");
-      supersonic.ui.layers.push(view)
-    };
 
-    $scope.load = function() {
-      var query = new Parse.Query(HighfiveParse);
-      query.equalTo("opened", false);
-      query.equalTo("receiver", UserParse.current().id);
-      query.find().then(function(highfives) {
-          supersonic.logger.info("Successfully retrieved " + highfives.length + " highfives.");
-          $scope.$apply( function () {
-            $scope.highfives = highfives;
-            $scope.showSpinner = false;
-          });
-        },function(error) {
-          supersonic.logger.info("Error: " + error.code + " " + error.message);
+    $scope.loadHighfives = function(){
+      Requests.loadHighfives(function(highfives){
+        $scope.$apply(function(){
+          $scope.showSpinner = false;
+          $scope.highfives = highfives;
         });
-    };
+      });
+    }
 
-    $scope.load();
+    // $scope.show = function(){
+    //   var modalView = new supersonic.ui.View("hi5#hand");
+    //   var options = {
+    //     animate: true
+    //   }
+
+    //   supersonic.ui.modal.show(modalView, options);
+    //   setTimeout(function(){
+    //     supersonic.ui.layers.pop();
+    //   }, 3000);
+    // }
+
   });
