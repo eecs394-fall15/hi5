@@ -2,6 +2,7 @@ angular
   .module('hi5')
   .controller('SendController', function($scope, supersonic, Requests, Accelerometer) {
     $scope.users = [];
+
     loadFriends();
 
     $scope.addFriend = function(){
@@ -43,7 +44,6 @@ angular
 
     $scope.initWatching = function(){
         $scope.watching = true;
-    	 
         Accelerometer.start(function(motion){
           if (motion === null){
             supersonic.ui.dialog.alert("No highfive detected");
@@ -59,9 +59,9 @@ angular
 
             $scope.clearUsers();
           }
-        });   
+        });
   	};
-    
+
     function getSelectedUsers(){
       return $scope.users.filter(function(user){
         return user.selected;

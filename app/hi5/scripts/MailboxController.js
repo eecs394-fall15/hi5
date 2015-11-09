@@ -4,6 +4,7 @@ angular
     $scope.showSpinner = true;
     $scope.highfives = null;
 
+
     $scope.loadHighfives = function(){
       Requests.loadHighfives(function(highfives){
         $scope.$apply(function(){
@@ -25,5 +26,4 @@ angular
     //   }, 3000);
     // }
 
-    $scope.loadHighfives();
   });

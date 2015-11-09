@@ -9,6 +9,7 @@
 
   <form name="form" ng-submit="login()" role="form">
       <div class="login list list-inset">
+        <div ng-show="error" class="alert alert-danger">{{ error }}</div>
         <div ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
           <label for="username" class="item item-input">
             <i class="icon super-person placeholder-icon"></i>
