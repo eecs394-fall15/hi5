@@ -1,4 +1,4 @@
-<div ng-controller="SendController">
+<div ng-controller="SendController" class="send">
 
   <super-navbar>
     <super-navbar-title>
@@ -9,7 +9,7 @@
     </super-navbar-button>
   </super-navbar>
 
-  <div ng-hide="highfive">
+  <div ng-hide="highfive" ng-class="{sendhighfive: enableButtons}">
 
     <!-- List of friends -->
     <ul class="list" ng-hide="users.length == 0">
@@ -27,15 +27,15 @@
     </h4>
 
     <!-- Buttons to send and clear selections -->
-    <div class="footer">
+    <div class="footer" ng-if="enableButtons">
       <button 
         class="button button-block button-calm icon super-paper-airplane" 
-        ng-show="enableButtons" ng-click="initWatching()">
+        ng-click="initWatching()">
         <!-- Send -->
       </button>
 
       <button class="button button-block button-dark" 
-        ng-if="enableButtons" ng-click="clearUsers()">
+        ng-click="clearUsers()">
         Clear
       </button>
     </div>
@@ -43,7 +43,7 @@
 
 
   <!-- pops up when recording accelerometer -->
-  <div style="position:fixed;z-index: 10000000; /* above everything else */top:0; left:0; bottom:0; right:0;background:rgba(0,0,0,.8);" ng-show="watching">
-    <h1 style="text-align:center; margin-top:50%; display:block; color:white;">Start High Fiving</h1>
+  <div class="popup" ng-show="watching">
+    <h1>Start High Fiving</h1>
   </div>
 </div>
