@@ -33,10 +33,12 @@ angular
 
       supersonic.ui.modal.show(modalView, options).then(function(){
         setTimeout(function(){
-          $scope.$apply(function() {
-            highfive.opened = true;
-            highfive.save().then(function(){});
+          Requests.viewHighfive(highfive, function(){
+            $scope.$apply(function() {
+              highfive.opened = true;
+            });
           });
+          
           supersonic.ui.modal.hide(options);
         }, 4000);
       });
@@ -57,7 +59,7 @@ angular
 
       return 'icon ' + (isOpened ? iconClasses.OPENED_RECEIVED : iconClasses.UNOPENED_RECEIVED);
     };
-    
+
 
     supersonic.ui.views.current.whenVisible( function() {
       if (first) {

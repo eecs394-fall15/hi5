@@ -40,20 +40,19 @@ angular
 	*	Send highfive to receiver
 	*/
 	service.sendHighfive = function(receiver, hifiveType, cb){
-			var highfive = {
-              opened: false,
-              receiver: receiver.id,
-              sender: UserParse.current().id,
-              senderName: UserParse.current().get('username'),
-              type: 'highfive'
-            };
+		var highfive = {
+          opened: false,
+          receiver: receiver.id,
+          sender: UserParse.current().id,
+          senderName: UserParse.current().get('username'),
+          type: 'highfive'
+        };
 
-            supersonic.logger.log(receiver.id);
-            var newhighfive = new Highfive(highfive);
-            newhighfive.save()
-            .then(function(){
-                supersonic.logger.info("Hi5 sent!");
-            });
+        var newhighfive = new Highfive(highfive);
+
+        newhighfive.save().then(function(){
+            supersonic.logger.info("Hi5 sent!");
+        });
 	};
 
 
@@ -61,7 +60,10 @@ angular
 	*	Set the highfive to viewed and save it
 	*/
 	service.viewHighfive = function(highfive, cb){
-
+		highfive.opened = true;
+        highfive.save().then(function(error){
+        	cb(highfive)
+        });
 	};
 
 
