@@ -57,6 +57,7 @@ angular
 
       return 'icon ' + (isOpened ? iconClasses.OPENED_RECEIVED : iconClasses.UNOPENED_RECEIVED);
     };
+    
 
     supersonic.ui.views.current.whenVisible( function() {
       if (first) {
