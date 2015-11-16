@@ -3,6 +3,8 @@
  * Read more about native styles at http://docs.appgyver.com
  ***********************************************************/
 
+
+
 navigation-bar {
   background-color: #e67e22;
   color: #ffffff;
@@ -35,13 +37,13 @@ tab-bar tab-bar-item:selected {
 }
 
 tab-bar-item#settings {
-  background-image: url(icons/cog.svg);
+  background-image: url(icons/paper_airplane.svg);
 }
 
-tab-bar-item#index {
-  background-image: url(icons/home.svg);
+tab-bar-item#mailbox {
+  background-image: url(icons/righthandprint.svg);
 }
 
-tab-bar-item#internet {
-  background-image: url(icons/search.svg);
+tab-bar-item#buddies {
+  background-image: url(icons/vampire.svg);
 }

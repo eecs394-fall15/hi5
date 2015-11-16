@@ -16,7 +16,7 @@ module.exports =
     }
     {
       title: "Buddies"
-      id: "internet"
+      id: "buddies"
       location: "hi5#friendRequests" # URLs are supported!
     }
   ]
