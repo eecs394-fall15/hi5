@@ -7,9 +7,9 @@
 	</super-navbar>
 	<!-- <button class="button button-calm" ng-click="updateHighfives(highfives)">Test</button> -->
 	
-	
+
 	<ul class="list">
-		<li class="item item-icon-left" ng-click="show(highfive)" ng-repeat="highfive in highfives" ng-init="liClass=getIconClass(highfive)">
+		<li class="item item-icon-left" ng-click="clickHighfiveItem(highfive)" ng-repeat="highfive in highfives" ng-init="liClass=getIconClass(highfive)">
 			<i ng-class="liClass"></i>
 			<span class="">{{highfive.senderName}}</span>
 			<span class="item-note">{{highfiveTimeSince(highfive)}}</span>

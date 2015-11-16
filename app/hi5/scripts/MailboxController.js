@@ -23,26 +23,17 @@ angular
       });
     };
 
+    $scope.clickHighfiveItem = function(highfive){
+      var isOpened = highfive.opened;
+      var isSender = (Requests.currentUser.id == highfive.sender);
 
+      if (isOpened || isSender)
+        return;
 
-    $scope.show = function(highfive){
-      var modalView = new supersonic.ui.View("hi5#view");
-      var options = {
-        animate: false
-      };
-
-      supersonic.ui.modal.show(modalView, options).then(function(){
-        setTimeout(function(){
-          Requests.viewHighfive(highfive, function(){
-            $scope.$apply(function() {
-              highfive.opened = true;
-            });
-          });
-          
-          supersonic.ui.modal.hide(options);
-        }, 4000);
-      });
+      showHighfive(highfive);
     };
+
+
 
     $scope.highfiveTimeSince = function(highfive){
       return Utility.timeSince(highfive.createdAt);
@@ -68,9 +59,29 @@ angular
       }
     });
 
+
     $scope.updateHighfives = function(highfives){
         $scope.highfives = sortHighfives(highfives);
     }
+
+    function showHighfive(highfive){
+      var modalView = new supersonic.ui.View("hi5#view");
+      var options = {
+        animate: false
+      };
+
+      supersonic.ui.modal.show(modalView, options).then(function(){
+        setTimeout(function(){
+          Requests.viewHighfive(highfive, function(){
+            $scope.$apply(function() {
+              highfive.opened = true;
+            });
+          });
+          
+          supersonic.ui.modal.hide(options);
+        }, 4000);
+      });
+    };
 
     function sortHighfives(highfives){
       var sent_opened = [];
