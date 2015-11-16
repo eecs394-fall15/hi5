@@ -63,6 +63,11 @@ angular
         }, 2000);
   	};
 
+    $scope.cancel = function(){
+      Accelerometer.stop();
+      $scope.watching = false;
+    };
+
     function getSelectedUsers(){
       return $scope.users.filter(function(user){
         return user.selected;
