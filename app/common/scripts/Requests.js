@@ -11,13 +11,12 @@ angular
 		var query = new Parse.Query(HighfiveParse);
 
       	query.equalTo("opened", false);
-      	query.equalTo("receiver", UserParse.current().id)
+      	query.equalTo("receiver", UserParse.current().id);
 
-      	query.find()
-      	.then(function(highfives) {
-			cb(highfives);
+      	query.find().then(function(highfives) {
+						cb(highfives);
         },function(error) {
-          supersonic.logger.info("Error: " + error.code + " " + error.message);
+          	supersonic.logger.info("Error: " + error.code + " " + error.message);
         });
 	};
 
@@ -64,6 +63,12 @@ angular
 			receiver = receiver[0];
 	        supersonic.logger.log("Found user. Sending request");
 	        var curUser = UserParse.current();
+
+					curUser.relation('friends').add(receiver);
+					curUser.save().then(function(){
+						supersonic.logger.log('Added new friend');
+					});
+
 	        var request = {
 	        	status : 'sent',
 	        	sender : curUser.id,
@@ -76,9 +81,43 @@ angular
 	        .then(function(){
 	        	supersonic.logger.log('Friend request sent');
 				cb(null);
-	        })
+			});
 		}, function(error) {
 			supersonic.logger.log("Didn't find user");
+			cb(error);
+		});
+	};
+
+	service.acceptFriendRequest = function(request) {
+		receiver = UserParse.current();
+		query = new Parse.Query(Parse.User);
+		query.equalTo("objectId", request.sender);
+		query.find({
+			success: function(sender){
+				supersonic.logger.log("Found sender... Accepting request");
+				UserParse.current().relation('friends').add(sender);
+				UserParse.current().save().then(function(){
+					supersonic.logger.log('Receiver saved!');
+				});
+			},
+			error: function(error){
+				supersonic.logger.log("Could not find sender!");
+			}
+		});
+		request['status'] = 'accepted';
+		request.save().then(function(){
+			supersonic.logger.log('Friend request has been accepted!');
+		});
+
+	};
+
+	service.rejectFriendRequest = function(request, cb) {
+		request.set('status', 'rejected');
+		request.save().then(function(request){
+			supersonic.logger.log("I don't want to be friends!");
+			cb(request);
+		}, function(error){
+			supersonic.logger.log("Rejection failed!");
 			cb(error);
 		});
 	};
@@ -88,6 +127,7 @@ angular
 
 		//TODO: check current friends list first
 		query.equalTo('receiver', UserParse.current().id);
+		query.equalTo('status', 'sent');
 		query.find()
 		.then(function(friendRequests){
 			supersonic.logger.log('Retrieved friend requests: ' + friendRequests.length);
@@ -98,13 +138,6 @@ angular
 		});
 	};
 
-	service.acceptFriendRequest = function(friendRequest, cb){
-		var friendID = friendRequest.get('sender');
-		UserParse.current().relation("friends").add(friendID)
-		UserParse.current().save();
-	};
-
-
 /************* HANDLE FRIENDs *********************/
 
 	service.loadFriends = function(cb){
@@ -113,11 +146,11 @@ angular
 			supersonic.logger.log("Retrieved friends: " + friends.length);
 			cb(friends);
 		});
+
 	};
 
 	service.loadUsers = function(cb){
 		var query = new Parse.Query(UserParse);
-
 	    query.find()
 	    .then(function(users) {
 	        supersonic.logger.info("Successfully retrieved " + users.length + " users.");
