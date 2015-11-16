@@ -17,20 +17,16 @@ angular
 
     $scope.acceptFriendRequest = function(request){
       Requests.acceptFriendRequest(request);
+      $scope.loadFriendRequests();
     };
 
     $scope.rejectFriendRequest = function(request){
-      Requests.rejectFriendRequest(request, function(request){
-        if (!error){
-            $scope.$apply(function(){
-              $scope.showSpinner = true;
-              $scope.request = request;
-            });
-          }
-        });
+      Requests.rejectFriendRequest(request);
+      $scope.loadFriendRequests();
     };
 
 
-
-    $scope.loadFriendRequests();
+    supersonic.ui.views.current.whenVisible( function() {
+      $scope.loadFriendRequests();
+    });
   });

@@ -127,14 +127,12 @@ angular
 
 	};
 
-	service.rejectFriendRequest = function(request, cb) {
+	service.rejectFriendRequest = function(request) {
 		request.set('status', 'rejected');
 		request.save().then(function(request){
 			supersonic.logger.log("I don't want to be friends!");
-			cb(request);
 		}, function(error){
 			supersonic.logger.log("Rejection failed!");
-			cb(error);
 		});
 	};
 
