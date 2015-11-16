@@ -18,17 +18,21 @@ angular
 		window.ondevicemotion = START_RECORDING;
 		supersonic.logger.log('Logging for : ' + timerLength)
 	    setTimeout(function(){
-            service.stop();
-            supersonic.logger.log("Stopped");
-            cb(identifyMotion());
+	    	if (window.ondevicemotion != null) {
+	            service.stop(function(){
+	            	supersonic.logger.log("Stopped");
+	            	cb(identifyMotion());
+	            });
+	        }
 	    }, timerLength);
 	};
 
 	/**
 	*	Accelerometer stops recording data. Note, accelerometer data is not cleared
 	*/
-	service.stop = function(){
+	service.stop = function(cb){
     	window.ondevicemotion = STOP_RECORDING;
+    	cb();
 	};
 
 	/**
@@ -57,7 +61,13 @@ angular
 
 		var cleanData = clean(accData);
 		var filtered = cleanData.filter(function(acc){
-			return Math.abs(acc.z) > 10;
+			if (Math.abs(acc.z) > 10) {
+				supersonic.logger.info("basic");
+				// return "basic";
+			} else if (Math.abs(acc.x) > 10) {
+				supersonic.logger.info("paperplane");
+				// return "paperplane";
+			}
 		})
 
 		if(filtered.length  > 0){
