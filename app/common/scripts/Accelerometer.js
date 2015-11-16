@@ -17,20 +17,22 @@ angular
 		timerLength = timerLength || 2000;
 		window.ondevicemotion = START_RECORDING;
 		supersonic.logger.log('Logging for : ' + timerLength)
-	    setTimeout(function(){	
-            service.stop();
-            supersonic.logger.log("Stopped");
-            supersonic.logger.info(accData);
-            cb(identifyMotion());
-	        
+	    setTimeout(function(){
+	    	if (window.ondevicemotion != null) {
+	    		service.stop(function(){
+	            	supersonic.logger.log("Stopped");
+		            cb(identifyMotion());
+	            });	
+	    	}
 	    }, timerLength);
 	};
 
 	/**
 	*	Accelerometer stops recording data. Note, accelerometer data is not cleared
 	*/
-	service.stop = function(){
+	service.stop = function(callback){
     	window.ondevicemotion = STOP_RECORDING;
+    	callback();
 	};
 
 	/**
@@ -58,18 +60,20 @@ angular
 		}
 
 		var cleanData = clean(accData);
-		var filtered = cleanData.filter(function(acc){
+		var motion = [0,0];
+		cleanData.filter(function(acc){
 			if (Math.abs(acc.z) > 10) {
-				supersonic.logger.info("basic");
-				return "basic";
-			} else if (Math.abs(acc.x) > 10) {
-				supersonic.logger.info("paperplane");
-				return "paperplane";
+				motion[0] += 1;
+			} else if (Math.abs(acc.y) > 10) {
+				motion[1] += 1;
 			}
-		})
-
-		if(filtered.length  > 0){
+		});
+		supersonic.logger.info(motion);
+		var max = Math.max.apply(null, motion);
+		if( motion[0] == max ){
             return HighfiveTypes.BASIC;
+        } else if ( motion[1] == max ) {
+        	return HighfiveTypes.PAPER_AIRPLANE;
         } else {
         	return null;
         }

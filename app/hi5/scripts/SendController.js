@@ -50,6 +50,7 @@ angular
 
         Accelerometer.start(function(motion){
           if (motion === null){
+            $scope.watching = false;
             supersonic.ui.dialog.alert("No highfive detected");
           } else {
             var recipients = getSelectedUsers();
