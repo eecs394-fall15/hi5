@@ -69,3 +69,12 @@ html, body {
   display: block;
   color: white;
 }
+
+.circle {
+  border-radius: 50%;
+  border-width: 2px;
+}
+
+.text-centered {
+  text-align: center;
+}
