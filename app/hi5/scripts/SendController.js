@@ -2,8 +2,11 @@ angular
   .module('hi5')
   .controller('SendController', function($scope, supersonic, Requests, Accelerometer) {
     $scope.users = [];
+    $scope.showSpinner = true;
 
-    loadFriends();
+    supersonic.ui.views.current.whenVisible( function() {
+      loadFriends();
+    });
 
     $scope.addFriend = function(){
       var options = {
@@ -82,12 +85,13 @@ angular
     }
 
     function loadFriends(){
-      Requests.loadUsers(function(error, users) {
+      Requests.loadFriends(function(users) {
         $scope.$apply( function () {
           $scope.users = users.map(function(user){
             user.selected=false;
             return user;
           });
+          $scope.showSpinner = false;
         });
       });
     }

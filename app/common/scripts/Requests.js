@@ -155,7 +155,7 @@ angular
 /************* HANDLE FRIENDs *********************/
 
 	service.loadFriends = function(cb){
-		UserParse.current().get('friends').query().find()
+		UserParse.current().relation('friends').query().find()
 		.then(function(friends){
 			supersonic.logger.log("Retrieved friends: " + friends.length);
 			cb(friends);
