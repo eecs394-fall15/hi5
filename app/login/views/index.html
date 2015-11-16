@@ -6,8 +6,7 @@
     </super-navbar-title>
   </super-navbar>
 
-
-  <form name="form" ng-submit="login()" role="form">
+  <form name="form" ng-submit="handleLogin()" role="form">
       <div class="login list list-inset">
         <div ng-show="error" class="alert alert-danger">{{ error }}</div>
         <div ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
