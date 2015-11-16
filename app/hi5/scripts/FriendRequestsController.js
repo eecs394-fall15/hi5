@@ -13,23 +13,20 @@ angular
           });
         }
       });
-    }
+    };
+
+    $scope.acceptFriendRequest = function(request){
+      Requests.acceptFriendRequest(request);
+      $scope.loadFriendRequests();
+    };
+
+    $scope.rejectFriendRequest = function(request){
+      Requests.rejectFriendRequest(request);
+      $scope.loadFriendRequests();
+    };
 
 
-
-
-
-    // $scope.show = function(){
-    //   var modalView = new supersonic.ui.View("hi5#hand");
-    //   var options = {
-    //     animate: true
-    //   }
-
-    //   supersonic.ui.modal.show(modalView, options);
-    //   setTimeout(function(){
-    //     supersonic.ui.layers.pop();
-    //   }, 3000);
-    // }
-
-    $scope.loadFriendRequests();
+    supersonic.ui.views.current.whenVisible( function() {
+      $scope.loadFriendRequests();
+    });
   });

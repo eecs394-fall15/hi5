@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Hi5": {
+      "applicationId": "C0wnCmDHHdeHmxq5SodsGob7LglWYW5CTizRz187"
+    },
+    "_default": {
+      "link": "Hi5"
+    }
+  }
+}
