@@ -28,13 +28,13 @@
 
     <!-- Buttons to send and clear selections -->
     <div class="footer" ng-if="enableButtons">
-      <button 
-        class="button button-block button-calm icon super-paper-airplane" 
+      <button
+        class="button button-block button-calm icon super-paper-airplane"
         ng-click="initWatching()">
         <!-- Send -->
       </button>
 
-      <button class="button button-block button-dark" 
+      <button class="button button-block button-dark"
         ng-click="clearUsers()">
         Clear
       </button>
@@ -45,5 +45,8 @@
   <!-- pops up when recording accelerometer -->
   <div class="popup" ng-show="watching">
     <h1>Start High Fiving</h1>
+    <div class="padding">
+      <button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
+    </div>
   </div>
 </div>

@@ -2,8 +2,11 @@ angular
   .module('hi5')
   .controller('SendController', function($scope, supersonic, Requests, Accelerometer) {
     $scope.users = [];
+    $scope.showSpinner = true;
 
-    loadFriends();
+    supersonic.ui.views.current.whenVisible( function() {
+      loadFriends();
+    });
 
     $scope.addFriend = function(){
       var options = {
@@ -47,6 +50,7 @@ angular
 
         Accelerometer.start(function(motion){
           if (motion === null){
+            $scope.watching = false;
             supersonic.ui.dialog.alert("No highfive detected");
           } else {
             var recipients = getSelectedUsers();
@@ -63,6 +67,14 @@ angular
         }, 2000);
   	};
 
+
+    $scope.stopHiFive = function () {
+      $scope.watching = false;
+      Accelerometer.stop(function(){
+        supersonic.ui.dialog.alert("Highfive stopped");
+      });
+    }
+
     function getSelectedUsers(){
       return $scope.users.filter(function(user){
         return user.selected;
@@ -74,12 +86,13 @@ angular
     }
 
     function loadFriends(){
-      Requests.loadUsers(function(error, users) {
+      Requests.loadFriends(function(users) {
         $scope.$apply( function () {
           $scope.users = users.map(function(user){
             user.selected=false;
             return user;
           });
+          $scope.showSpinner = false;
         });
       });
     }
