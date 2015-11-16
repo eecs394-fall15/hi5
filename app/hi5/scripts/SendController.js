@@ -63,10 +63,13 @@ angular
         }, 2000);
   	};
 
-    $scope.cancel = function(){
-      Accelerometer.stop();
+
+    $scope.stopHiFive = function () {
       $scope.watching = false;
-    };
+      Accelerometer.stop(function(){
+        supersonic.ui.dialog.alert("Highfive stopped");
+      });
+    }
 
     function getSelectedUsers(){
       return $scope.users.filter(function(user){

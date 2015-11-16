@@ -4,17 +4,33 @@ angular
 	var service = {};
 	var curUserFriends = null;
 
+	service.currentUser = UserParse.current();
+
 
 /************* HANDLE HIGHFIVES *********************/
 
 	service.loadHighfives = function(cb){
-		var query = new Parse.Query(HighfiveParse);
+		supersonic.logger.log("Loading highfives");
+		var unopenedReceivedQuery = new Parse.Query(HighfiveParse);
+      	unopenedReceivedQuery.equalTo("opened", false);
+      	unopenedReceivedQuery.equalTo("receiver", UserParse.current().id);
 
-      	query.equalTo("opened", false);
-      	query.equalTo("receiver", UserParse.current().id);
+      	var openedReceivedQuery = new Parse.Query(HighfiveParse);
+      	openedReceivedQuery.equalTo("opened", true);
+      	openedReceivedQuery.equalTo("receiver", UserParse.current().id);
+      	// openedReceivedQuery.limit(5).descending("createdAt");
 
-      	query.find().then(function(highfives) {
-						cb(highfives);
+      	var sentQuery = new Parse.Query(HighfiveParse);
+      	sentQuery.equalTo("opened", false);
+      	sentQuery.equalTo("sender", UserParse.current().id);
+
+      	var combinedQuery = Parse.Query.or(unopenedReceivedQuery, openedReceivedQuery);
+
+      	combinedQuery.find()
+      	.then(function(highfives) {
+      		supersonic.logger.log("Succesfully retrieved highfives: " + highfives.length);
+			cb(highfives);
+
         },function(error) {
           	supersonic.logger.info("Error: " + error.code + " " + error.message);
         });
