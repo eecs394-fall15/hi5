@@ -11,7 +11,7 @@ module.exports =
     }
     {
       title: "Send"
-      id: "settings"
+      id: "send"
       location: "hi5#send"
     }
     {

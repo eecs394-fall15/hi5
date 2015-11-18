@@ -36,14 +36,14 @@ tab-bar tab-bar-item:selected {
   color: #1596f7;
 }
 
-tab-bar-item#settings {
-  background-image: url(icons/paper_airplane.svg);
-}
-
-tab-bar-item#mailbox {
+tab-bar-item#send {
   background-image: url(icons/righthandprint.svg);
 }
 
+tab-bar-item#mailbox {
+  background-image: url(icons/mailbox-8.svg);
+}
+
 tab-bar-item#buddies {
-  background-image: url(icons/vampire.svg);
+  background-image: url(icons/friends.png);
 }
