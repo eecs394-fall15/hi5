@@ -1,14 +1,18 @@
 <div ng-controller="IndexController">
 
-  <br></br>
-  <br></br>
+  <!-- Hi5  emblem image -->
+  <h1 class="text-centered">
+    <img src="/img/hi5emblem.png" />
+  </h1>
 
-  <h1 class="text-centered">Hi5</h1>
-  <br>
-
+  <!-- Login form  -->
   <form name="form" ng-submit="handleLogin()" role="form">
       <div class="login list list-inset">
+
+        <!-- Displays Parse errors to user with login  -->
         <div ng-show="error" class="alert alert-danger">{{ error }}</div>
+
+        <!-- Password field. After edited, checks for errors -->
         <div ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
           <label for="username" class="item item-input">
             <i class="icon super-person placeholder-icon"></i>
@@ -16,7 +20,8 @@
           </label>
         </div>
         <div ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</div>
-        <br>
+
+        <!-- Password field. After edited, checks for errors -->
         <div ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
           <label for="password" class="item item-input">
             <i class="icon super-locked placeholder-icon"></i>
@@ -28,7 +33,7 @@
 
         <br></br>
 
-
+        <!-- Login and register buttons -->
         <button type="submit" ng-disabled="form.$invalid || dataLoading" class="item button button-block button-positive">Login</button>
         <super-navigate location="login#registration">
           <button class="button button-block button-stable">Register</button>

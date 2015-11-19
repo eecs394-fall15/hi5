@@ -1,0 +1,17 @@
+<div ng-controller="HighfivingController">
+
+	<!-- Shows users currently selected highfive-->
+	<div class="popup" ng-hide="watching">
+		
+	</div>
+
+<!-- pops up when recording accelerometer -->
+  <div class="popup" ng-show="watching">
+    <h1>Start High Fiving</h1>
+
+    <div class="padding">
+      <button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
+    </div>
+  </div>
+
+</div>

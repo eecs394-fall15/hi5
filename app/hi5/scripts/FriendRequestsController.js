@@ -4,6 +4,7 @@ angular
     $scope.showSpinner = true;
     $scope.friendRequests = null;
 
+    // TODO: implement local caching
     $scope.loadFriendRequests = function(){
       Requests.loadFriendRequests(function(error, friendRequests){
         if (!error){

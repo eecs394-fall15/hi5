@@ -110,10 +110,10 @@ angular
 	// *	@param {array} array of data to check
 	// *	return {arrayof(object)} returns array of objects that contain startIndex, stopIndex, and spike-axis  
 	
-	// function detectSpikes(){
-	// 	//TODO: instead of hardcoding delta threshold, find through filter
-	// 	console.log("detecting");
-	// }
+	function detectSpikes(){
+		//TODO: instead of hardcoding delta threshold, find through filter
+		console.log("detecting");
+	}
 
 	return service;
 });
