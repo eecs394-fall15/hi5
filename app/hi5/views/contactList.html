@@ -1,0 +1,15 @@
+<div ng-controller="ContactListController">
+	<super-navbar>
+		<super-navbar-title>Add Buddies</super-navbar-title>
+	</super-navbar>
+
+	<ul class="list">
+		<li class="item item-icon-left" ng-click="addFriend(contact)" ng-repeat="contact in contacts">
+		<i class="icon super-ios-plus-outline"></i>
+			<span>{{contact.name.formatted}}</span>
+			<span class="item-note">{{phoneNumber(contact)}}</span>
+		</li>
+	</ul>
+		
+	
+</div>

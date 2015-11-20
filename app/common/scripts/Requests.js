@@ -71,35 +71,50 @@ angular
 /************* HANDLE FRIEND REQUESTS *********************/
 
 
-	service.sendFriendRequest = function(username, cb){
+	service.sendFriendRequest = function(searchParam, cb, telephone){
 		var query = new Parse.Query(UserParse);
+        var curUser = UserParse.current();
+		var curUsername = curUser.get('username');
+
+		if(searchParam === curUsername){
+			supersonic.ui.dialog.alert("Funny. Go highfive yourself");
+			return;
+		}
+
+		var searchField = (telephone) ? 'phone' : 'username';
 
 		//TODO: check current friends list first
-		query.equalTo('username', username);
+		query.equalTo(searchField, searchParam);
+
 		query.find()
 		.then(function(receiver){
-			receiver = receiver[0];
-	        supersonic.logger.log("Found user. Sending request");
-	        var curUser = UserParse.current();
+			if(receiver.length === 0){
+				cb("No user found");
+			} else {
+				receiver = receiver[0];
+	        	supersonic.logger.log("Found user. Sending request");
 
-					curUser.relation('friends').add(receiver);
-					curUser.save().then(function(){
-						supersonic.logger.log('Added new friend');
-					});
+				curUser.relation('friends').add(receiver);
+				curUser.save().then(function(){
+					supersonic.logger.log('Added new friend');
+				});
 
-	        var request = {
-	        	status : 'sent',
-	        	sender : curUser.id,
-	        	senderName : curUser.get('username'),
-	        	receiver : receiver.id
-	        };
+	        	var request = {
+	        		status : 'sent',
+	        		sender : curUser.id,
+	        		senderName : curUsername,
+	        		receiver : receiver.id
+	        	};
 
-	        var newRequest = new FriendRequest(request);
-	        newRequest.save()
-	        .then(function(){
-	        	supersonic.logger.log('Friend request sent');
-				cb(null);
-			});
+	        	var newRequest = new FriendRequest(request);
+	        	newRequest.save()
+	        	.then(function(){
+	        		supersonic.logger.log('Friend request sent');
+					cb(null);
+				});
+			}
+
+			
 		}, function(error) {
 			supersonic.logger.log("Didn't find user");
 			cb(error);

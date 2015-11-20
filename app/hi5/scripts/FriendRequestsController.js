@@ -3,6 +3,10 @@ angular
   .controller('FriendRequestController', function($scope, supersonic, Requests) {
     $scope.showSpinner = true;
     $scope.friendRequests = null;
+    var contactListView = new supersonic.ui.View({
+      location: "hi5#ContactList",
+      id: 'contactList'
+    });
 
     $scope.addFriend = function(){
       var options = {
@@ -45,8 +49,12 @@ angular
       $scope.loadFriendRequests();
     };
 
+    function goToContactList(){
+      supersonic.ui.modal.show(contactListView, {animate : true});
+    }
+
     newBtn = new supersonic.ui.NavigationBarButton({
-      onTap: $scope.addFriend,
+      onTap: goToContactList,
       styleId: "nav-new"
     });
 
