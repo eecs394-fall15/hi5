@@ -1,6 +1,6 @@
 angular
-  .module('user')
-  .controller("ProfileController", function ($scope, UserParse, RequestParse, supersonic, Parse, User) {
+  .module('hi5')
+  .controller("ProfileController", function ($scope, UserParse, supersonic, Parse, User) {
     $scope.user = null;
     $scope.showSpinner = true;
     $scope.dataId = undefined;
