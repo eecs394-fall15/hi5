@@ -15,7 +15,7 @@ angular
 
     function parseLogin(username, password, successCb, failCb){
       UserParse.logIn(username, password)
-      .then(function(err){
+      .then(function(user){
         supersonic.logger.info("Login Succeed for {\"user\":" + $scope.username + ", \"password\":" + $scope.password + "\"}");
         successCb(user);
       }, failCb);
