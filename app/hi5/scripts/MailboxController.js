@@ -120,7 +120,7 @@ angular
     }
 
     newBtn = new supersonic.ui.NavigationBarButton({
-      onTap: $scope.create,
+      onTap: $scope.loadHighfives,
       styleId: "nav-refresh"
     });
 

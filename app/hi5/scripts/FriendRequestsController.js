@@ -46,7 +46,7 @@ angular
     };
 
     newBtn = new supersonic.ui.NavigationBarButton({
-      onTap: $scope.create,
+      onTap: $scope.addFriend,
       styleId: "nav-new"
     });
 
