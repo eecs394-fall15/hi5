@@ -4,6 +4,27 @@ angular
     $scope.contacts = null
     var numberPattern = /\d+/g;
 
+
+    $scope.addFriendUsername = function(){
+      var options = {
+        title: "Send Friend Request",
+        defaultText : ""
+      };
+
+      supersonic.ui.dialog.prompt("Enter friend's username", options)
+      .then(function(promptdata) {
+        var username = promptdata.input;
+
+        Requests.sendFriendRequest(username, function(error){
+          if(error){
+            supersonic.ui.dialog.alert("Could not find user");
+          } else {
+            supersonic.ui.dialog.alert("Request sent!");
+          }
+        }, false);
+      });
+    };
+
     $scope.loadContacts = function(){
 		supersonic.logger.log("Loading contacts");
 		loadContacts()
