@@ -1,11 +1,14 @@
 <div ng-controller="FriendRequestController">
-	<ul class="list">
-		<li class="card" ngclick="show()" ng-repeat="request in friendRequests">
-			<h2 class="item item-row">{{request.senderName}} wants to be friends!</h2>
-			<div class="item item-body">
-				<button class="button button-balanced icon super-checkmark-circled" ng-click="acceptFriendRequest(request)">  Accept</button>
-				<button class="button button-assertive icon super-close-circled" ng-click="rejectFriendRequest(request)">  Reject</button>
-			</div>
-		</li>
-	</ul>
+	<div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+	<div ng-hide="showSpinner">
+		<ul class="list">
+			<li class="card" ngclick="show()" ng-repeat="request in friendRequests">
+				<h2 class="item item-row">{{request.senderName}} wants to be friends!</h2>
+				<div class="item item-body">
+					<button class="button button-balanced icon super-checkmark-circled" ng-click="acceptFriendRequest(request)">  Accept</button>
+					<button class="button button-assertive icon super-close-circled" ng-click="rejectFriendRequest(request)">  Reject</button>
+				</div>
+			</li>
+		</ul>
+	</div>
 </div>

@@ -133,6 +133,6 @@ angular
     }).then(supersonic.ui.navigationBar.show());
 
     supersonic.ui.views.current.whenVisible( function() {
-      $scope.loadFriendRequests();
+      $scope.loadHighfives();
     });
 });
