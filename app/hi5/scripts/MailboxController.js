@@ -77,7 +77,7 @@ angular
               highfive.opened = true;
             });
           });
-          
+
           supersonic.ui.modal.hide(options);
         }, 4000);
       });
@@ -118,4 +118,21 @@ angular
         return 0;
       }
     }
+
+    newBtn = new supersonic.ui.NavigationBarButton({
+      onTap: $scope.create,
+      styleId: "nav-refresh"
+    });
+
+    supersonic.ui.navigationBar.update({
+      title: "Inbox",
+      overrideBackButton: false,
+      buttons: {
+        right: [newBtn]
+      }
+    }).then(supersonic.ui.navigationBar.show());
+
+    supersonic.ui.views.current.whenVisible( function() {
+      $scope.loadFriendRequests();
+    });
 });

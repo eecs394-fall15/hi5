@@ -33,6 +33,14 @@ navigation-bar back-button {
   font-weight: 300;
 }
 
+#nav-new icon {
+  background-image: url(icons/ios-plus-outline.svg);
+}
+
+#nav-refresh icon {
+  background-image: url(icons/ios-refresh-outline.svg);
+}
+
 /**************************************
  *  Tab Bar
  *************************************/
@@ -64,7 +72,7 @@ tab-bar-item#send {
   background-image: url(icons/righthandprint.svg);
 }
 
-tab-bar-item#mailbox {
+tab-bar-item#inbox {
   background-image: url(icons/mailbox-8.svg);
 }
 

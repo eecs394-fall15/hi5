@@ -45,6 +45,18 @@ angular
       $scope.loadFriendRequests();
     };
 
+    newBtn = new supersonic.ui.NavigationBarButton({
+      onTap: $scope.create,
+      styleId: "nav-new"
+    });
+
+    supersonic.ui.navigationBar.update({
+      title: "Buddies",
+      overrideBackButton: false,
+      buttons: {
+        right: [newBtn]
+      }
+    }).then(supersonic.ui.navigationBar.show());
 
     supersonic.ui.views.current.whenVisible( function() {
       $scope.loadFriendRequests();

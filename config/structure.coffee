@@ -5,8 +5,8 @@ module.exports =
   # See styling options for tabs and other native components in app/common/native-styles/ios.css or app/common/native-styles/android.css
   tabs: [
     {
-      title: "Mailbox"
-      id: "mailbox"
+      title: "Inbox"
+      id: "inbox"
       location: "hi5#mailbox" # Supersonic module#view type navigation
     }
     {
@@ -21,8 +21,8 @@ module.exports =
     }
   ]
 
-  # rootView:
-  #   location: "example#getting-started"
+  rootView:
+    location: "hi5#send"
 
   preloads: [
 
