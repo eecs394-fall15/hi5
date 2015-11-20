@@ -6,44 +6,47 @@
     </super-navbar-title>
   </super-navbar>
 
-  <div ng-hide="highfive" ng-class="{sendhighfive: enableButtons}">
+  <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+  <div ng-hide="showSpinner">
+    <div ng-hide="highfive" ng-class="{sendhighfive: enableButtons}">
 
-    <!-- List of friends -->
-    <ul class="list" ng-hide="users.length == 0">
-      <li class="item item-checkbox" ng-repeat="user in users">
-        <label class="checkbox">
-          <input type="checkbox" ng-model="user.selected" ng-change="select(user)">
-        </label>
-        {{user.username}}
-      </li>
-    </ul>
+      <!-- List of friends -->
+      <ul class="list" ng-hide="users.length == 0">
+        <li class="item item-checkbox" ng-repeat="user in users">
+          <label class="checkbox">
+            <input type="checkbox" ng-model="user.selected" ng-change="select(user)">
+          </label>
+          {{user.username}}
+        </li>
+      </ul>
 
-    <!-- Prompt for no friends/users -->
-    <h4 ng-show="users.length == 0" class="assertive padding">
-      No buddies found :(
-    </h4>
+      <!-- Prompt for no friends/users -->
+      <h4 ng-show="users.length == 0" class="assertive padding">
+        No buddies found :(
+      </h4>
 
-    <!-- Buttons to send and clear selections -->
-    <div class="footer" ng-if="enableButtons">
-      <button
-        class="button button-block button-calm icon super-paper-airplane"
-        ng-click="initWatching()">
-        <!-- Send -->
-      </button>
+      <!-- Buttons to send and clear selections -->
+      <div class="footer" ng-if="enableButtons">
+        <button
+          class="button button-block button-calm icon super-paper-airplane"
+          ng-click="initWatching()">
+          <!-- Send -->
+        </button>
 
-      <button class="button button-block button-dark"
-        ng-click="clearUsers()">
-        Clear
-      </button>
+        <button class="button button-block button-dark"
+          ng-click="clearUsers()">
+          Clear
+        </button>
+      </div>
     </div>
-  </div>
 
 
-  <!-- pops up when recording accelerometer -->
-  <div class="popup" ng-show="watching">
-    <h1>Start High Fiving</h1>
-    <div class="padding">
-      <button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
+    <!-- pops up when recording accelerometer -->
+    <div class="popup" ng-show="watching">
+      <h1>Start High Fiving</h1>
+      <div class="padding">
+        <button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
+      </div>
     </div>
   </div>
 </div>

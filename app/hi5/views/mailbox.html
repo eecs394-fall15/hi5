@@ -1,11 +1,12 @@
 <div ng-controller="MailboxController">
-
-	<ul class="list">
-		<li class="item item-icon-left" ng-click="clickHighfiveItem(highfive)" ng-repeat="highfive in highfives" ng-init="liClass=getIconClass(highfive)">
-			<i ng-class="liClass"></i>
-			<span class="">{{highfive.senderName}}</span>
-			<span class="item-note">{{highfiveTimeSince(highfive)}}</span>
-		</li>
-
-	</ul>
+	<div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
+	<div ng-hide="showSpinner">
+		<ul class="list">
+			<li class="item item-icon-left" ng-click="clickHighfiveItem(highfive)" ng-repeat="highfive in highfives" ng-init="liClass=getIconClass(highfive)">
+				<i ng-class="liClass"></i>
+				<span class="">{{highfive.senderName}}</span>
+				<span class="item-note">{{highfiveTimeSince(highfive)}}</span>
+			</li>
+		</ul>
+	</div>
 </div>

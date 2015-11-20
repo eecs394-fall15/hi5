@@ -3,10 +3,12 @@ angular
   .controller('FriendRequestController', function($scope, supersonic, Requests) {
     $scope.showSpinner = true;
     $scope.friendRequests = null;
+
     var contactListView = new supersonic.ui.View({
       location: "hi5#ContactList",
       id: 'contactList'
     });
+
 
 
     $scope.loadFriendRequests = function(){
@@ -30,8 +32,16 @@ angular
       $scope.loadFriendRequests();
     };
 
+    supersonic.ui.views.current.whenVisible( function() {
+      $scope.loadFriendRequests();
+    });
+
+
+
+    // MENU BAR FUNCTIONS
+
     function goToContactList(){
-      supersonic.ui.modal.show(contactListView, {animate : true});
+      supersonic.ui.modal.show(contactListView);
     }
 
     newBtn = new supersonic.ui.NavigationBarButton({
@@ -47,7 +57,5 @@ angular
       }
     }).then(supersonic.ui.navigationBar.show());
 
-    supersonic.ui.views.current.whenVisible( function() {
-      $scope.loadFriendRequests();
-    });
+
   });
