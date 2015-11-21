@@ -8,26 +8,6 @@ angular
       loadFriends();
     });
 
-    // $scope.addFriend = function(){
-    //   var options = {
-    //     title: "Send Friend Request",
-    //     defaultText : ""
-    //   };
-    //
-    //   supersonic.ui.dialog.prompt("Enter friend's username", options)
-    //   .then(function(promptdata) {
-    //     var username = promptdata.input;
-    //
-    //     Requests.sendFriendRequest(username, function(error){
-    //       if(error){
-    //         supersonic.ui.dialog.alert("Could not find user");
-    //       } else {
-    //         supersonic.ui.dialog.alert("Request sent!");
-    //       }
-    //     });
-    //   });
-    // };
-
     $scope.clearUsers = function(){
       $scope.users = $scope.users.map(function(user){
         user.selected = false;
@@ -39,10 +19,6 @@ angular
 
     $scope.select = function (user) {
         $scope.enableButtons = enableButtons();
-    };
-
-    $scope.testFunc = function(){
-      Requests.loadFriends();
     };
 
     $scope.initWatching = function(){
