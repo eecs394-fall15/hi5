@@ -3,7 +3,6 @@ angular
   .controller('ContactListController', function($scope, supersonic, Requests) {
     $scope.contacts = null
     var numberPattern = /\d+/g;
-    // loadFriendRequests();
 
     $scope.leaveList = function(){
     	supersonic.ui.modal.hide();
@@ -17,7 +16,10 @@ angular
 
       supersonic.ui.dialog.prompt("Enter friend's username", options)
       .then(function(promptdata) {
-        var username = promptdata.input;
+        var username = promptdata.input.trim();
+        
+        if(username.length === 0)
+          return;
 
         Requests.sendFriendRequest(username, function(error){
           if(error){
@@ -56,7 +58,7 @@ angular
 		if(!contact.phoneNumbers || contact.phoneNumbers.length === 0)
             supersonic.ui.dialog.alert("No phone number provided");
 
-        supersonic.logger.log("Attempting friend request");
+    supersonic.logger.log("Attempting friend request");
 		var telephone = contact.phoneNumbers[0].value.match(numberPattern).join("");
 		supersonic.logger.log(telephone);
 

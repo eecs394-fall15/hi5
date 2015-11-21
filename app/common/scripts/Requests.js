@@ -7,6 +7,31 @@ angular
 	service.currentUser = UserParse.current();
 
 
+	service.logout = function(successCb, failureCb){
+		return UserParse.logOut();
+	}
+
+/************* HANDLE Status *********************/
+
+	service.setStatus = function(newStatus, cb){
+		if(typeof newStatus !== 'string' || newStatus.trim() ===0){
+			supersonic.ui.dialog.alert("Please enter a status");
+		} else {
+			this.currentUser.set('status', newStatus);
+			this.currentUser.save()
+			.then(function(){
+				cb(null);
+			},
+				function(err){
+					cb(err);
+			})
+		}
+	}
+
+	
+
+
+
 /************* HANDLE HIGHFIVES *********************/
 
 	service.loadHighfives = function(cb){

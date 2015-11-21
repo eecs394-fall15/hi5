@@ -1,16 +1,27 @@
 <div ng-controller="ContactListController">
 	<super-navbar>
 		<super-navbar-title>Add Buddies</super-navbar-title>
-		<!-- <super-navbar-button side="left" ng-click="leaveList()">
-			&lt;
-		</super-navbar-button> -->
-		<super-navbar-button side="right" ng-click="addFriendUsername()">
-			+ Username
-		</super-navbar-button>
 	</super-navbar>
 
+
+	<button ng-click="addFriendUsername()" class="footer button button-full button-positive"> 
+		<i class="icon super-ios-plus"></i>
+		Add by Username
+	</button>
+
+
+	<div class="bar bar-header item-input-inset">
+		<label class="item-input-wrapper">
+			<i class="icon super-ios-search placeholder-icon"></i>
+			<input type="search" placeholder="Search" ng-model="searchContacts">
+		</label>
+		<button class="button button-clear" ng-click="searchContacts=''">
+		    Clear
+		</button>
+	</div>
+
 	<ul class="list">
-		<li class="item item-icon-left" ng-click="addFriend(contact)" ng-repeat="contact in contacts">
+		<li class="item item-icon-left" ng-click="addFriend(contact)" ng-repeat="contact in contacts | filter : searchContacts">
 		<i class="icon super-ios-plus-outline"></i>
 			<span>{{contact.name.formatted}}</span>
 			<span class="item-note">{{phoneNumber(contact)}}</span>
