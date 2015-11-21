@@ -149,6 +149,18 @@ angular
       }
     }
 
+    function logout(){
+      supersonic.logger.log("Logging out");
+      Requests.logout().then(function(){
+        supersonic.ui.initialView.show();
+      })
+    }
+
+    logoutBtn = new supersonic.ui.NavigationBarButton({
+      onTap: logout,
+      styleId: "nav-logout"
+    });
+
     newBtn = new supersonic.ui.NavigationBarButton({
       onTap: $scope.loadHighfives,
       styleId: "nav-refresh"
@@ -158,6 +170,7 @@ angular
       title: "Inbox",
       overrideBackButton: false,
       buttons: {
+        left :[logoutBtn],
         right: [newBtn]
       }
     }).then(supersonic.ui.navigationBar.show());
