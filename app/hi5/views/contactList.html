@@ -4,10 +4,11 @@
 		<!-- <super-navbar-button side="left" ng-click="leaveList()">
 			&lt;
 		</super-navbar-button> -->
-		<super-navbar-button side="right" ng-click="addFriendUsername()">
-			+ Username
-		</super-navbar-button>
 	</super-navbar>
+	<button ng-click="addFriendUsername()" class="footer button button-full button-positive"> 
+		<i class="icon super-ios-plus"></i>
+		Add by Username
+	</button>
 
 	<ul class="list">
 		<li class="item item-icon-left" ng-click="addFriend(contact)" ng-repeat="contact in contacts">
