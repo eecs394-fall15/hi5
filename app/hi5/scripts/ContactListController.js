@@ -3,7 +3,6 @@ angular
   .controller('ContactListController', function($scope, supersonic, Requests) {
     $scope.contacts = null
     var numberPattern = /\d+/g;
-    // loadFriendRequests();
 
     $scope.leaveList = function(){
     	supersonic.ui.modal.hide();

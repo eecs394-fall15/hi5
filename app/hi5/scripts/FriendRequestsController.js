@@ -45,6 +45,7 @@ angular
     $scope.acceptFriendRequest = function(request){
       Requests.acceptFriendRequest(request);
       $scope.loadFriendRequests();
+      supersonic.ui.dialog.alert("Friend Request Accepted");
     };
 
     $scope.rejectFriendRequest = function(request){
