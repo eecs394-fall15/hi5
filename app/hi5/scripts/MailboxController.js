@@ -1,6 +1,6 @@
 angular
   .module('hi5')
-  .controller('MailboxController', function($scope, supersonic, Requests, Utility) {
+  .controller('MailboxController', function($scope, supersonic, Requests, Utility, Accelerometer) {
     $scope.showSpinner = true;
     $scope.highfives = null;
     var first = true;
@@ -12,6 +12,36 @@ angular
       OPENED_SENT : "super-ios-paperplane"
     };
 
+    $scope.reply = function(highfive) {
+      supersonic.logger.log('SWIPED');
+      initWatching(highfive.sender);
+    };
+
+    var initWatching = function(recipient){
+        $scope.watching = true;
+
+        Accelerometer.start(function(motion){
+          if (motion === null){
+            $scope.watching = false;
+            supersonic.ui.dialog.alert("No highfive detected");
+          } else {
+
+            $scope.watching = false;
+
+            supersonic.ui.dialog.alert("Sending " + motion);
+
+            Requests.sendHighfive(recipient, null, null);
+          }
+        }, 2000);
+    };
+
+
+    $scope.stopHiFive = function () {
+      $scope.watching = false;
+      Accelerometer.stop(function(){
+        supersonic.ui.dialog.alert("Highfive stopped");
+      });
+    };
 
     $scope.loadHighfives = function(){
       supersonic.logger.log("Requesting highfives");
@@ -135,4 +165,5 @@ angular
     supersonic.ui.views.current.whenVisible( function() {
       $scope.loadHighfives();
     });
+
 });

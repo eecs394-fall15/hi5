@@ -2,11 +2,18 @@
 	<div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
 	<div ng-hide="showSpinner">
 		<ul class="list">
-			<li class="item item-icon-left" ng-click="clickHighfiveItem(highfive)" ng-repeat="highfive in highfives" ng-init="liClass=getIconClass(highfive)">
+			<li class="item item-icon-left" ng-click="clickHighfiveItem(highfive)" ng-repeat="highfive in highfives" ng-init="liClass=getIconClass(highfive)" ng-swipe-right="reply(highfive)">
 				<i ng-class="liClass"></i>
 				<span class="">{{highfive.senderName}}</span>
 				<span class="item-note">{{highfiveTimeSince(highfive)}}</span>
 			</li>
 		</ul>
+		<!-- pops up when recording accelerometer -->
+		<div class="popup" ng-show="watching">
+			<h1>Start High Fiving</h1>
+			<div class="padding">
+				<button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
+			</div>
+		</div>
 	</div>
 </div>
