@@ -108,41 +108,7 @@ angular
       });
     };
 
-    // function sortHighfives(highfives){
-    //   var sent_opened = [];
-    //   var received_opened = [];
-    //   var sent_unopened = [];
-    //   var received_unopened = [];
 
-    //   highfives.forEach(function(highfive){
-    //     if (highfive.sender == Requests.currentUser.id){
-    //       highfive.opened ? sent_opened.push(highfive) : sent_unopened.push(highfive)
-    //     } else{
-    //       highfive.opened ? received_opened.push(highfive) : received_unopened.push(highfive)
-    //     }
-    //   });
-
-    //   sent_opened.sort(compareHighfiveDates);
-    //   received_opened.sort(compareHighfiveDates);
-    //   sent_unopened.sort(compareHighfiveDates);
-    //   received_unopened.sort(compareHighfiveDates);
-
-    //   var ret = received_unopened.concat(received_opened, sent_unopened, sent_opened);
-
-    //   return ret;
-
-    //   function compareHighfiveDates(a, b){
-    //     if(a.createdAt > b.createdAt){
-    //       return 1;
-    //     }
-
-    //     if(a.createdAt < b.createdAt){
-    //       return -1;
-    //     }
-
-    //     return 0;
-    //   }
-    // }
 
     function logout(){
       supersonic.logger.log("Logging out");
