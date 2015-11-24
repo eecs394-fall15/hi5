@@ -25,7 +25,6 @@ angular
 	    		service.stop(function(){
 	            	supersonic.logger.log("Stopped");
 	            	var motion = identifyMotion();
-	            	supersonic.logger.log("Deleting acc data: " + service.clearData());
 		            cb(null, motion);
 		    	});
 		    }, timerLength);
@@ -75,8 +74,13 @@ angular
 				motion[1] += 1;
 			}
 		});
+		
 		supersonic.logger.info(motion);
 		var max = Math.max.apply(null, motion);
+
+		if(motion[0] ===0 && motion[1] === 0)
+			return null;
+
 		if( motion[0] == max ){
             return HighfiveTypes.BASIC;
         } else if ( motion[1] == max ) {
