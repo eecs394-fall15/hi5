@@ -14,17 +14,24 @@ angular
 	*	@param {function} cb called with the motion that was identified 
 	*/
 	service.start = function(cb, timerLength){
-		timerLength = timerLength || 2000;
-		window.ondevicemotion = START_RECORDING;
-		supersonic.logger.log('Logging for : ' + timerLength)
-	    setTimeout(function(){
-	    	if (window.ondevicemotion != null) {
+		if(window.ondevicemotion !== null){
+			cb("Error: already started", null);
+		} else{
+			timerLength = timerLength || 2000;
+			window.ondevicemotion = START_RECORDING;
+			supersonic.logger.log('Logging for : ' + timerLength);
+
+		    setTimeout(function(){
 	    		service.stop(function(){
 	            	supersonic.logger.log("Stopped");
-		            cb(identifyMotion());
-	            });	
-	    	}
-	    }, timerLength);
+	            	var motion = identifyMotion();
+	            	supersonic.logger.log("Deleting acc data: " + service.clearData());
+		            cb(null, motion);
+		    	});
+		    }, timerLength);
+		}
+
+		
 	};
 
 	/**
