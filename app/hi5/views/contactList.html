@@ -1,13 +1,14 @@
-<div ng-controller="ContactListController">
+<div ng-controller="ContactListController" class="contacts">
 	<super-navbar>
 		<super-navbar-title>Add Buddies</super-navbar-title>
 	</super-navbar>
 
-
-	<button ng-click="addFriendUsername()" class="footer button button-full button-positive"> 
-		<i class="icon super-ios-plus"></i>
-		Add by Username
-	</button>
+	<a href="#modal">
+		<button class="footer button button-full button-positive"> 
+			<i class="icon super-ios-plus"></i>
+			Add by Username
+		</button>
+	</a>
 
 
 	<div class="bar bar-header item-input-inset">
@@ -20,13 +21,27 @@
 		</button>
 	</div>
 
-	<ul class="list">
-		<li class="item item-icon-left" ng-click="addFriend(contact)" ng-repeat="contact in contacts | filter : searchContacts">
-		<i class="icon super-ios-plus-outline"></i>
+	<ul class="list" >
+		<li class="item item-icon-left" ng-click="addFriend(contact)" ng-repeat="contact in contacts | filter : searchContacts |orderBy: 'name.formatted'">
+			<i class="icon super-ios-plus-outline"></i>
 			<span>{{contact.name.formatted}}</span>
 			<span class="item-note">{{phoneNumber(contact)}}</span>
 		</li>
 	</ul>
-		
-	
+
+	<div id="modal" class="username">
+		<div>
+			<div class="bar bar-header item-input-inset">
+				<label class="item-input-wrapper">
+					<i class="icon super-ios-search placeholder-icon"></i>
+					<input type="search" placeholder="Search" ng-model="$parent.username">
+				</label>
+				<button class="button button-clear" ng-click="$parent.username=''">
+				    Clear
+				</button>
+			</div>
+			<button class="button button-full button-positive" ng-click="addFriendUsername($parent.username)">Add</button>
+			<a href="#close" title="Close" class="button button-full button-assertive">Close</a>
+		</div>
+	</div>
 </div>

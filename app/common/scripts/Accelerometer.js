@@ -14,17 +14,23 @@ angular
 	*	@param {function} cb called with the motion that was identified 
 	*/
 	service.start = function(cb, timerLength){
-		timerLength = timerLength || 2000;
-		window.ondevicemotion = START_RECORDING;
-		supersonic.logger.log('Logging for : ' + timerLength)
-	    setTimeout(function(){
-	    	if (window.ondevicemotion != null) {
+		if(window.ondevicemotion !== null){
+			cb("Error: already started", null);
+		} else{
+			timerLength = timerLength || 2000;
+			window.ondevicemotion = START_RECORDING;
+			supersonic.logger.log('Logging for : ' + timerLength);
+
+		    setTimeout(function(){
 	    		service.stop(function(){
 	            	supersonic.logger.log("Stopped");
-		            cb(identifyMotion());
-	            });	
-	    	}
-	    }, timerLength);
+	            	var motion = identifyMotion();
+		            cb(null, motion);
+		    	});
+		    }, timerLength);
+		}
+
+		
 	};
 
 	/**
@@ -68,8 +74,13 @@ angular
 				motion[1] += 1;
 			}
 		});
+		
 		supersonic.logger.info(motion);
 		var max = Math.max.apply(null, motion);
+
+		if(motion[0] ===0 && motion[1] === 0)
+			return null;
+
 		if( motion[0] == max ){
             return HighfiveTypes.BASIC;
         } else if ( motion[1] == max ) {

@@ -24,21 +24,30 @@ angular
     $scope.initWatching = function(){
         $scope.watching = true;
 
-        Accelerometer.start(function(motion){
-          if (motion === null){
-            $scope.watching = false;
-            supersonic.ui.dialog.alert("No highfive detected");
+        Accelerometer.start(function(err, motion){
+          supersonic.logger.log("Deleting acc data: " + Accelerometer.clearData());
+          if(err){
+            supersonic.ui.dialog.alert("Woops, that was a little wild! Try again!")
+            $scope.initWatching();
           } else {
-            var recipients = getSelectedUsers();
-            $scope.watching = false;
+            if (motion === null){
+              $scope.watching = false;
+              supersonic.ui.dialog.alert("No highfive detected");
+            } else {
+              var recipients = getSelectedUsers();
 
-            supersonic.ui.dialog.alert("Sending " + motion);
+              supersonic.ui.dialog.alert("Sending " + motion)
+              .then(function(){
+                for(var i =0; i < recipients.length; ++i){
+                  Requests.sendHighfive(recipients[i], null, null);
+                }
 
-            for(var i =0; i < recipients.length; ++i){
-              Requests.sendHighfive(recipients[i], null, null);
+                $scope.$apply(function(){
+                  $scope.watching = false;
+                  $scope.clearUsers();
+                });
+              });        
             }
-
-            $scope.clearUsers();
           }
         }, 2000);
   	};
@@ -47,7 +56,8 @@ angular
     $scope.stopHiFive = function () {
       $scope.watching = false;
       Accelerometer.stop(function(){
-        supersonic.ui.dialog.alert("Highfive stopped");
+        Accelerometer.clearData();
+        // supersonic.ui.dialog.alert("Highfive stopped");
       });
     }
 

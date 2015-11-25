@@ -5,30 +5,20 @@ angular
     var numberPattern = /\d+/g;
 
     $scope.leaveList = function(){
-    	supersonic.ui.modal.hide();
+    	supersonic.ui.layers.pop();
     };
 
-    $scope.addFriendUsername = function(){
-      var options = {
-        title: "Send Friend Request",
-        defaultText : ""
-      };
+    $scope.addFriendUsername = function(username){
+      if(username.length === 0)
+        return;
 
-      supersonic.ui.dialog.prompt("Enter friend's username", options)
-      .then(function(promptdata) {
-        var username = promptdata.input.trim();
-        
-        if(username.length === 0)
-          return;
-
-        Requests.sendFriendRequest(username, function(error){
-          if(error){
-            supersonic.ui.dialog.alert("Could not find user");
-          } else {
-            supersonic.ui.dialog.alert("Request sent!");
-          }
-        }, false);
-      });
+      Requests.sendFriendRequest(username, function(error){
+        if(error){
+          supersonic.ui.dialog.alert("Could not find user");
+        } else {
+          supersonic.ui.dialog.alert("Request sent!");
+        }
+      }, false);
     };
 
     $scope.loadContacts = function(){

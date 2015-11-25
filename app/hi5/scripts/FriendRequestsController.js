@@ -13,7 +13,7 @@ angular
 
 
     var contactListView = new supersonic.ui.View({
-      location: "hi5#ContactList",
+      location: "hi5#contactList",
       id: 'contactList'
     });
 
@@ -59,7 +59,7 @@ angular
 
     function setStatus(promptdata){
       var status = promptdata.input.trim();
-      
+
       if(status.length > 40){
         supersonic.ui.dialog.alert("Status too long")
         displayStatusPrompt(setStatus);
@@ -74,7 +74,7 @@ angular
           $scope.curUser = Requests.currentUser
         }
       });
-    } 
+    }
 
     function displayStatusPrompt(successCb, defaultText){
       defaultText = defaultText || "";
@@ -90,7 +90,8 @@ angular
     // MENU BAR FUNCTIONS
 
     function goToContactList(){
-      supersonic.ui.modal.show(contactListView);
+
+      supersonic.ui.layers.push(contactListView);
     }
 
     newBtn = new supersonic.ui.NavigationBarButton({
