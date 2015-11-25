@@ -1,6 +1,6 @@
 <!-- <div ng-controller="FriendRequestController">
-	
-	
+
+
 		<ul class="list">
 			<li class="card" ngclick="show()" ng-repeat="request in friendRequests">
 				<h2 class="item item-row">{{request.senderName}} wants to be friends!</h2>
@@ -17,16 +17,9 @@
 
 <div ng-controller="FriendRequestController">
 	<div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
-	
+
 	<div ng-hide="showSpinner">
 	<!-- all within show spinner -->
-	<super-navbar>
-		<super-navbar-title>Buddies</super-navbar-title>
-			<super-navbar-button side="right" location="hi5#contactList">
-				+ Buddy
-			</super-navbar-button>
-	</super-navbar>
-
 
 	<div class="list">
 		<div ng-show="friendRequests.length">
@@ -41,7 +34,7 @@
 				</li>
 			</ul>
 		</div>
-		
+
 
 		<div class="item item-divider">The Happenings</div>
 		<ul class="list">
@@ -71,5 +64,5 @@
 
 	<!-- end show spinner -->
 	</div>
-	
+
 </div>
