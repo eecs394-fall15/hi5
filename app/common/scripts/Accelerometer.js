@@ -29,8 +29,6 @@ angular
 		    	});
 		    }, timerLength);
 		}
-
-		
 	};
 
 	/**

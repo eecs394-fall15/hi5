@@ -100,6 +100,7 @@ html, body {
   bottom: 0;
   right: 0;
   background: rgba(0,0,0,.8);
+  color: white;
 }
 
 .popup h1 {
@@ -116,4 +117,18 @@ html, body {
 
 .text-centered {
   text-align: center;
+}
+
+.popup-list {
+  background: rgba(0,0,0,.8);
+}
+
+.popup-list .highfive-title{
+  color: white;
+  font-size: 1.7em;
+  font-weight: 700;
+}
+
+.popup-list .item {
+  background: rgba(0,0,0,.8);
 }
