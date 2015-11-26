@@ -68,7 +68,7 @@ angular
       var view = new supersonic.ui.View("hi5#highfiving");
       var customAnimation = supersonic.ui.animate("flipVerticalFromTop");
 
-      supersonic.ui.modal.show(view, {animation: customAnimation});
+      supersonic.ui.layers.push(view, {animation: customAnimation});
     };
 
     $scope.stopHiFive = function () {
