@@ -79,7 +79,7 @@ angular
       var customAnimation = supersonic.ui.animate("flipVerticalFromTop");
 
       selectedRecipients = getSelectedUsers();
-      supersonic.ui.layers.push(view, {animation: customAnimation});
+      supersonic.ui.modal.show(view, {animation: customAnimation});
     };
 
     $scope.stopHiFive = function () {
@@ -115,7 +115,7 @@ angular
 
     function sendHighfives(highfive){
       
-      supersonic.ui.dialog.alert("Sending")
+      supersonic.ui.dialog.alert("Sent")
       .then(function(){
         for(var i =0; i < selectedRecipients.length; ++i){
           Requests.sendHighfive(selectedRecipients[i], null, null);
