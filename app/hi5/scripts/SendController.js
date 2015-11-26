@@ -80,8 +80,12 @@ angular
     }
 
     function getSelectedUsers(){
-      return $scope.users.filter(function(user){
+      var ret = $scope.users.filter(function(user){
         return user.selected;
+      });
+
+      return ret.map(function(user){
+        return user.id;
       });
     }
 
