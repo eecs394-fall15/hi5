@@ -4,6 +4,7 @@ angular
     $scope.users = [];
     $scope.showSpinner = true;
     var selectedRecipients = null;
+    var firstLoad = true;
 
     var unsubscribe = supersonic.data.channel('highfiving').subscribe(function(message, reply) {
         supersonic.logger.log(message);
@@ -23,7 +24,10 @@ angular
     });
 
     supersonic.ui.views.current.whenVisible( function() {
-      loadFriends();
+      if (firstLoad){
+        loadFriends();
+        firstLoad = false;
+      }
     });
 
     $scope.clearUsers = function(){
@@ -103,10 +107,7 @@ angular
     function loadFriends(){
       Requests.loadFriends(function(users) {
         $scope.$apply( function () {
-          $scope.users = users.map(function(user){
-            user.selected=false;
-            return user;
-          });
+          $scope.users = users;
           $scope.showSpinner = false;
         });
       });
