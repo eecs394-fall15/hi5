@@ -19,23 +19,7 @@ angular
       $scope.startHighfiving();
     };
 
-    var initWatching = function(recipient){
-        $scope.watching = true;
-
-        Accelerometer.start(function(motion){
-          if (motion === null){
-            $scope.watching = false;
-            supersonic.ui.dialog.alert("No highfive detected");
-          } else {
-
-            $scope.watching = false;
-
-            supersonic.ui.dialog.alert("Sending " + motion);
-
-            Requests.sendHighfive(recipient, null, null);
-          }
-        }, 2000);
-    };
+    
 
     $scope.startHighfiving = function () {
       var view = new supersonic.ui.View("hi5#highfiving");
@@ -44,12 +28,7 @@ angular
       supersonic.ui.modal.show(view, {animation: customAnimation});
     };
 
-    $scope.stopHiFive = function () {
-      $scope.watching = false;
-      Accelerometer.stop(function(){
-        supersonic.ui.dialog.alert("Highfive stopped");
-      });
-    };
+
 
     $scope.loadHighfives = function(){
       supersonic.logger.log("Requesting highfives");
@@ -90,12 +69,6 @@ angular
     };
 
 
-    // supersonic.ui.views.current.whenVisible( function() {
-    //   if (first) {
-    //     $scope.loadHighfives();
-    //     first = false;
-    //   }
-    // });
 
     function showHighfive(highfive){
       var modalView = new supersonic.ui.View("hi5#view");
