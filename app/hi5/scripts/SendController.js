@@ -103,17 +103,17 @@ angular
 
     function sendHighfives(highfive){
       var recipients = getSelectedUsers();
+     
+      supersonic.ui.dialog.alert("Sending")
+      .then(function(){
+        for(var i =0; i < recipients.length; ++i){
+          Requests.sendHighfive(recipients[i], null, null);
+        }
 
-      supersonic.ui.dialog.alert("Sending");
-      // .then(function(){
-      //   for(var i =0; i < recipients.length; ++i){
-      //     Requests.sendHighfive(recipients[i], null, null);
-      //   }
-
-      //   $scope.$apply(function(){
-      //     $scope.watching = false;
-      //     $scope.clearUsers();
-      //   });
-      // });  
+        $scope.$apply(function(){
+          $scope.watching = false;
+          $scope.clearUsers();
+        });
+      });  
     }
 });
