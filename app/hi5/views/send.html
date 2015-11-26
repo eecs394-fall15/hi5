@@ -27,11 +27,12 @@
 
       <!-- Buttons to send and clear selections -->
       <div class="footer" ng-if="enableButtons">
-        <button
+        <super-navigate-button 
+          location="hi5#highfiving"
           class="button button-full button-calm icon super-paper-airplane"
-          ng-click="initWatching()">
-          <!-- Send -->
-        </button>
+          ng-click="startHighfiving()">
+          Send
+        </super-navigate-button>
 
         <button class="button button-full button-dark"
           ng-click="clearUsers()">

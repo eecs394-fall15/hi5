@@ -19,13 +19,21 @@ module.exports =
       id: "buddies"
       location: "hi5#friendRequests" # URLs are supported!
     }
+    {
+      title: "testzone"
+      id: "testzone"
+      location: "hi5#highfiving" # URLs are supported!
+    }
   ]
 
   rootView:
     location: "hi5#send"
 
   preloads: [
-
+    # {
+    #   id: "highfiving"
+    #   location: "hi5#highfiving"
+    # }
   ]
 
   initialView:
