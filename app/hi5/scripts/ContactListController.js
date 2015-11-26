@@ -83,5 +83,9 @@ angular
 		}
 	}
 
+	$scope.removeEmptyContacts = function(contact) {
+		return (contact.name.formatted.length > 0);
+	}
+
 
   });

@@ -4,6 +4,18 @@ angular
     $scope.users = [];
     $scope.showSpinner = true;
 
+    var unsubscribe = supersonic.data.channel('highfiving').subscribe(function(message, reply) {
+        supersonic.logger.log(message);
+        var chosenHighfive = JSON.parse(message);
+
+        if(!chosenHighfive.type || !chosenHighfive.subtype){
+          supersonic.ui.dialog.alert("Sorry, there was an issue sending your highfive");
+        } else{
+          console.log("sending");
+          sendHighfives(chosenHighfive);
+        }
+    });
+
     supersonic.ui.views.current.whenVisible( function() {
       loadFriends();
     });
@@ -52,6 +64,12 @@ angular
         }, 2000);
   	};
 
+    $scope.startHighfiving = function(){
+      var view = new supersonic.ui.View("hi5#highfiving");
+      var customAnimation = supersonic.ui.animate("flipVerticalFromTop");
+
+      supersonic.ui.layers.push(view, {animation: customAnimation});
+    };
 
     $scope.stopHiFive = function () {
       $scope.watching = false;
@@ -83,4 +101,19 @@ angular
       });
     }
 
+    function sendHighfives(highfive){
+      var recipients = getSelectedUsers();
+     
+      supersonic.ui.dialog.alert("Sending")
+      .then(function(){
+        for(var i =0; i < recipients.length; ++i){
+          Requests.sendHighfive(recipients[i], null, null);
+        }
+
+        $scope.$apply(function(){
+          $scope.watching = false;
+          $scope.clearUsers();
+        });
+      });  
+    }
 });

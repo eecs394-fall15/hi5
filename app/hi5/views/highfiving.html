@@ -1,9 +1,50 @@
 <div ng-controller="HighfivingController" class="send">
 
-	<div class="popup" ng-show="watching">
-	    <h1>Start High Fiving</h1>
+<!-- <button ng-hide="simulating" ng-click="startSimulation()" class="button button-positive">Simulate</button> -->
+
+
+	<!-- Popup for when user is selecting via accelerometer -->
+	<div class="popup" ng-show="state=='watching'">
+	    <h1>{{prompt}}</h1>
+	    <div ng-show="showSpinner" ng-include="'_smallSpinner.html'"></div>
 	    <div class="padding">
-	      <button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
+    		<button ng-click="chooseHighfiveTypeUI()" class="button button-block button-outline button-positive">Choose Hi5</button>
+	    	<button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
+	    	<button ng-show="retry" ng-click="initWatching()" class="footer button button-block button-positive">Retry Hi5</button>
 	    </div>
+	</div>
+
+	<!-- Popup for when user is selecting via touch -->
+	<div class="popup" ng-show="state=='choosingType'">
+		<div style="padding-top:2em">
+			<h2 class="text-center" style="color:white">{{prompt}}</h2>
+			<div class="list popup-list">
+				<a class="item item-thumbnail-left" href="#" ng-repeat="(highfiveType, value) in highfiveTypes" ng-click="selectHighfiveType(highfiveType)">
+					<img ng-src="{{value.imgSrc}}">
+					<h2 class="highfive-title">{{value.display}}</h2>
+					<p> {{value.description}}</p>
+				</a>
+			</div>
+		</div>
+		<button class="footer button icon-left super-chevron-left button-block button-positive" ng-click="initWatching()">
+			Back to Hi5'ing
+		</button>
+	</div>
+
+	<!-- Popup for when user is selecting sub type -->
+	<div class="popup" ng-show="state=='choosingSubtype'">
+		<div style="padding-top:1em">
+			<h2 class="text-centered" style="color:white">{{prompt}}</h2>
+			<div class="list popup-list">
+				<a class="item item-thumbnail-left" href="#" ng-repeat="value in highfiveTypes[selectedType].subtypes" ng-click="selectHighfiveSubtype(value)">
+					<img style="background:white" ng-src="{{value.thumbnailSrc}}">
+					<h2 class="highfive-title">{{value.display}}</h2>
+					<p> {{value.description}}</p>
+				</a>
+			</div>
+		</div>
+		<button class="footer button icon-left super-chevron-left button-block button-positive" ng-click="chooseHighfiveTypeUI()">
+			Back to Hi5 Types
+		</button>
 	</div>
 </div>

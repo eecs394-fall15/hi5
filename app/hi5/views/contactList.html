@@ -1,3 +1,4 @@
+
 <div ng-controller="ContactListController" class="contacts">
 	<super-navbar>
 		<super-navbar-title>Add Buddies</super-navbar-title>
@@ -22,7 +23,7 @@
 	</div>
 
 	<ul class="list" >
-		<li class="item item-icon-left" ng-click="addFriend(contact)" ng-repeat="contact in contacts | filter : searchContacts |orderBy: 'name.formatted'">
+		<li class="item item-icon-left" ng-click="addFriend(contact)" ng-repeat="contact in contacts | filter : searchContacts | orderBy: 'name.formatted' | filter : removeEmptyContacts">
 			<i class="icon super-ios-plus-outline"></i>
 			<span>{{contact.name.formatted}}</span>
 			<span class="item-note">{{phoneNumber(contact)}}</span>
