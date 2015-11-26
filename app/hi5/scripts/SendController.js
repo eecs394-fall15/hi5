@@ -3,6 +3,8 @@ angular
   .controller('SendController', function($scope, supersonic, Requests, Accelerometer) {
     $scope.users = [];
     $scope.showSpinner = true;
+    var selectedRecipients = null;
+    var firstLoad = true;
 
     var unsubscribe = supersonic.data.channel('highfiving').subscribe(function(message, reply) {
         supersonic.logger.log(message);
@@ -16,8 +18,16 @@ angular
         }
     });
 
+    var recipientSub = supersonic.data.channel('recipients').subscribe(function(message, reply){
+      supersonic.logger.log(message);
+      selectedRecipients = [message];
+    });
+
     supersonic.ui.views.current.whenVisible( function() {
-      loadFriends();
+      if (firstLoad){
+        loadFriends();
+        firstLoad = false;
+      }
     });
 
     $scope.clearUsers = function(){
@@ -68,6 +78,7 @@ angular
       var view = new supersonic.ui.View("hi5#highfiving");
       var customAnimation = supersonic.ui.animate("flipVerticalFromTop");
 
+      selectedRecipients = getSelectedUsers();
       supersonic.ui.layers.push(view, {animation: customAnimation});
     };
 
@@ -96,22 +107,18 @@ angular
     function loadFriends(){
       Requests.loadFriends(function(users) {
         $scope.$apply( function () {
-          $scope.users = users.map(function(user){
-            user.selected=false;
-            return user;
-          });
+          $scope.users = users;
           $scope.showSpinner = false;
         });
       });
     }
 
     function sendHighfives(highfive){
-      var recipients = getSelectedUsers();
-     
+      
       supersonic.ui.dialog.alert("Sending")
       .then(function(){
-        for(var i =0; i < recipients.length; ++i){
-          Requests.sendHighfive(recipients[i], null, null);
+        for(var i =0; i < selectedRecipients.length; ++i){
+          Requests.sendHighfive(selectedRecipients[i], null, null);
         }
 
         $scope.$apply(function(){

@@ -14,7 +14,9 @@ angular
 
     $scope.reply = function(highfive) {
       supersonic.logger.log('SWIPED');
-      initWatching(highfive.sender);
+      // initWatching(highfive.sender);
+      supersonic.data.channel('recipients').publish(highfive.sender);
+      $scope.startHighfiving();
     };
 
     var initWatching = function(recipient){
@@ -35,6 +37,12 @@ angular
         }, 2000);
     };
 
+    $scope.startHighfiving = function () {
+      var view = new supersonic.ui.View("hi5#highfiving");
+      var customAnimation = supersonic.ui.animate("flipVerticalFromTop");
+
+      supersonic.ui.layers.push(view, {animation: customAnimation});
+    };
 
     $scope.stopHiFive = function () {
       $scope.watching = false;
@@ -82,12 +90,12 @@ angular
     };
 
 
-    supersonic.ui.views.current.whenVisible( function() {
-      if (first) {
-        $scope.loadHighfives();
-        first = false;
-      }
-    });
+    // supersonic.ui.views.current.whenVisible( function() {
+    //   if (first) {
+    //     $scope.loadHighfives();
+    //     first = false;
+    //   }
+    // });
 
     function showHighfive(highfive){
       var modalView = new supersonic.ui.View("hi5#view");

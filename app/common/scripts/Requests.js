@@ -17,8 +17,8 @@ angular
 		if(typeof newStatus !== 'string' || newStatus.trim() ===0){
 			supersonic.ui.dialog.alert("Please enter a status");
 		} else {
-			this.currentUser.set('status', newStatus);
-			this.currentUser.save()
+			UserParse.current().set('status', newStatus);
+			UserParse.current().save()
 			.then(function(){
 				cb(null);
 			},
