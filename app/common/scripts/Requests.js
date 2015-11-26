@@ -65,10 +65,10 @@ angular
 	/**
 	*	Send highfive to receiver
 	*/
-	service.sendHighfive = function(receiver, hifiveType, cb){
+	service.sendHighfive = function(receiverId, hifiveType, cb){
 		var highfive = {
           opened: false,
-          receiver: receiver.id,
+          receiver: receiverId,
           sender: UserParse.current().id,
           senderName: UserParse.current().get('username'),
           type: 'highfive'

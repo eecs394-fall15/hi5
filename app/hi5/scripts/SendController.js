@@ -107,7 +107,7 @@ angular
       supersonic.ui.dialog.alert("Sending")
       .then(function(){
         for(var i =0; i < recipients.length; ++i){
-          Requests.sendHighfive(recipients[i], null, null);
+          Requests.sendHighfive(recipients[i].id, null, null);
         }
 
         $scope.$apply(function(){
