@@ -117,3 +117,12 @@ html, body {
 .text-centered {
   text-align: center;
 }
+
+.thumbnail {
+  height: 100px;
+  width: auto;
+}
+
+.selection {
+  background-color: black !important;
+}
