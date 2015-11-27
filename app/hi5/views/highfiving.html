@@ -8,9 +8,9 @@
 	    <h1>{{prompt}}</h1>
 	    <div ng-show="showSpinner" ng-include="'_smallSpinner.html'"></div>
 	    <div class="padding">
+	    	<button ng-show="retry" ng-click="initWatching()" class="button button-block button-outline button-energized">Retry Hi5</button>
     		<button ng-click="chooseHighfiveTypeUI()" class="button button-block button-outline button-positive">Choose Hi5</button>
-	    	<button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
-	    	<button ng-show="retry" ng-click="initWatching()" class="footer button button-block button-positive">Retry Hi5</button>
+	    	<button ng-click="stopHiFive()" class="footer button button-block button-outline button-assertive">Cancel</button>
 	    </div>
 	</div>
 

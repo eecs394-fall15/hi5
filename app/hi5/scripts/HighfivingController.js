@@ -47,7 +47,7 @@ angular
         subtype : $scope.selectedSubtype
       }));
       
-      supersonic.ui.layers.pop();
+      supersonic.ui.modal.hide();
     };
 
     $scope.initWatching = function(){
@@ -87,6 +87,7 @@ angular
       Accelerometer.stop(function(){
         Accelerometer.clearData();
       });
+      supersonic.ui.modal.hide();
     }
 
     supersonic.ui.views.current.whenVisible( function() {

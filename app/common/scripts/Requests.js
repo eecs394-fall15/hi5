@@ -71,7 +71,7 @@ angular
           receiver: receiverId,
           sender: UserParse.current().id,
           senderName: UserParse.current().get('username'),
-          type: 'highfive'
+          type: hifiveType
         };
 
         var newhighfive = new Highfive(highfive);
