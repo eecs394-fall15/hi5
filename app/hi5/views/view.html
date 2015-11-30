@@ -2,7 +2,7 @@
 <html>
 <head>
 	<script src="/components/jquery/dist/jquery.js"></script>
-	<script>
+	<!-- <script>
 		setTimeout(function(){
 			$(document).ready(function() {
 				$(".highfive").animate({
@@ -14,10 +14,8 @@
 				});
 			})
 		}, 2000);
-	</script>
+	</script> -->
 </head>
 <div ng-controller="ViewController">
-		<br></br>
-		<br></br>
-	  <img class="highfive" ng-src="/hands/high_five{{rand}}.png"></img>
+	  <img class="highfive" ng-src="{{imgSrc}}"></img>
 </div>

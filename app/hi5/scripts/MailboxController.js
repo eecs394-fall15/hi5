@@ -19,7 +19,7 @@ angular
       $scope.startHighfiving();
     };
 
-    
+
 
     $scope.startHighfiving = function () {
       var view = new supersonic.ui.View("hi5#highfiving");
@@ -71,21 +71,25 @@ angular
 
 
     function showHighfive(highfive){
-      var modalView = new supersonic.ui.View("hi5#view");
-      var options = {
-        animate: false
-      };
+      Requests.viewHighfive(highfive, function(highfive){
+        var viewURL = 'hi5#view'
+        var view = new supersonic.ui.View(viewURL);
 
-      supersonic.ui.modal.show(modalView, options).then(function(){
-        setTimeout(function(){
-          Requests.viewHighfive(highfive, function(){
-            $scope.$apply(function() {
-              highfive.opened = true;
-            });
-          });
+        var options = {
+          params: {
+            id: highfive.id
+          }
+        };
 
-          supersonic.ui.modal.hide(options);
-        }, 4000);
+        supersonic.ui.layers.push(view, options).then(function(){
+          setTimeout(function(){
+            var nullAnimation = supersonic.ui.animate("fade", {duration: '0.0'});
+            var options = {
+              animation: nullAnimation
+            }
+            supersonic.ui.layers.pop();
+          }, 4000);
+        });
       });
     };
 

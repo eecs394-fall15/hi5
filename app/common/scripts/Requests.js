@@ -28,7 +28,7 @@ angular
 		}
 	}
 
-	
+
 
 
 
@@ -139,7 +139,7 @@ angular
 				});
 			}
 
-			
+
 		}, function(error) {
 			supersonic.logger.log("Didn't find user");
 			cb(error);

@@ -1,4 +1,4 @@
-angular
+ vccangular
   .module('user')
   .controller("ShowController", function ($scope, User, supersonic) {
     $scope.user = null;

@@ -19,25 +19,25 @@ angular
 		subtypes : [{
 			id : 'classic',
 			display :  'The Classic',
-			imgSrc: '',
+			imgSrc: '/hands/theclassic.png',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
 			length: 2000,
 		},{
 			id : 'fact',
 			display :  'Fact!',
-			imgSrc: '',
+			imgSrc: '/hands/fact.gif',
 			thumbnailSrc: '/hands/thumbnails/fact.gif',
 			length : 2000,
 		},{
 			id : 'blackhawksBump',
 			display :  'Da Blackhawks Bump',
-			imgSrc: '',
+			imgSrc: '/hands/blackhawk.png',
 			thumbnailSrc: '/hands/thumbnails/blackhawk.png',
 			length : 2000,
 		},{
-			id : 'wilcatz',
+			id : 'wildcatz',
 			display :  'Go Catz!',
-			imgSrc: '',
+			imgSrc: '/hands/catz.png',
 			thumbnailSrc: '/hands/thumbnails/catz.png',
 			length: 2000
 		}]
