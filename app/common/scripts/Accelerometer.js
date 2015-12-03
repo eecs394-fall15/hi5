@@ -11,13 +11,13 @@ angular
 	/**
 	*	Accelerometer starts recording data
 	*	@param {int}	timerLength num ms to record acc data for. Defaults to 2000
-	*	@param {function} cb called with the motion that was identified 
+	*	@param {function} cb called with the motion that was identified
 	*/
 	service.start = function(cb, timerLength){
 		if(window.ondevicemotion !== null){
 			cb("Error: already started", null);
 		} else{
-			timerLength = timerLength || 2000;
+			timerLength = timerLength || 4000;
 			window.ondevicemotion = START_RECORDING;
 			supersonic.logger.log('Logging for : ' + timerLength);
 
@@ -40,7 +40,7 @@ angular
 	};
 
 	/**
-	*	Clear recorded acclerometer data 
+	*	Clear recorded acclerometer data
 	*	@return	{int} returns the number of data points cleared
 	*/
 	service.clearData = function(){
@@ -56,7 +56,7 @@ angular
 	/**
 	*	Uses recorded data
 	*	@return	{int} returns the number of data points cleared
-	*/	
+	*/
 	function identifyMotion(){
 		//assume that there is not data
 		if (accData.length < 10){
@@ -72,7 +72,7 @@ angular
 				motion[1] += 1;
 			}
 		});
-		
+
 		supersonic.logger.info(motion);
 		var max = Math.max.apply(null, motion);
 
@@ -90,7 +90,7 @@ angular
 
 
 	/**
-	*	Tries to account for drift, removes values 
+	*	Tries to account for drift, removes values
 	*	@return	{array} returns cleaned array
 	*/
 	function clean(){
@@ -104,7 +104,7 @@ angular
 	// function lowPassFilter(){
 	// 	var runningAverage = 0;
 	// 	var ret = [];
-		
+
 	// 	for(var i = 0; i < arr.length; i++){
 	// 		console.log("filtering");
 	// 	}
@@ -117,8 +117,8 @@ angular
 	// *	delta acc > 0.4 between each datapoint
 	// *
 	// *	@param {array} array of data to check
-	// *	return {arrayof(object)} returns array of objects that contain startIndex, stopIndex, and spike-axis  
-	
+	// *	return {arrayof(object)} returns array of objects that contain startIndex, stopIndex, and spike-axis
+
 	// function detectSpikes(){
 	// 	//TODO: instead of hardcoding delta threshold, find through filter
 	// 	console.log("detecting");

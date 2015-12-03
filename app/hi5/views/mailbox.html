@@ -5,8 +5,13 @@
 		<ul class="list">
 			<li class="item item-icon-left" ng-click="clickHighfiveItem(highfive)" ng-init="liClass=getIconClass(highfive)" ng-swipe-right="reply(highfive)" ng-repeat="highfive in highfives| orderBy:createdAt:true">
 				<i ng-class="liClass"></i>
-				<span class="">{{highfive.senderName}}</span>
+				<span>{{highfive.senderName}}</span>
 				<span class="item-note">{{highfiveTimeSince(highfive)}}</span>
+				<div ng-if="$first">
+					<p class="subdued">
+						Slide right to reply <span class="super-chevron-right"></span>
+					</p>
+				</div>
 			</li>
 		</ul>
 	</div>
