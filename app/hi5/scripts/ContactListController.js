@@ -21,11 +21,6 @@ angular
       }, false);
     };
 
-    $scope.loadContacts = function(){
-		supersonic.logger.log("Loading contacts");
-		loadContacts()
-	};
-
 	$scope.fullname = function(contact){
 		var first = contact.givenName || "";
 		var last = contact.familyName || "";
@@ -61,26 +56,40 @@ angular
         }, true);
 	}
 
-	supersonic.ui.views.current.whenVisible(function(){
-		loadContacts();
-	});
+	// supersonic.ui.views.current.whenVisible(function(){
+	// 	loadContacts();
+	// });
 
 
 	function loadContacts(){
-		var options = new ContactFindOptions();
-		options.multiple = true;
-		var fields = ["displayName", "name", "nickname "];
-		navigator.contacts.find(fields, onSuccess, onError, options);
+		// var options = new ContactFindOptions();
+		// options.multiple = true;
+		// var fields = ["displayName", "name", "nickname "];
+		// navigator.contacts.find(fields, onSuccess, onError, options);
 
-		function onSuccess(contacts) {
-  			supersonic.logger.log( JSON.stringify(contacts[0]) );
-  			$scope.$apply(function(){
-  				$scope.contacts = contacts;
-  			});
-		}
-		function onError(err){
-			supersonic.logger.log(JSON.stringify(err));
-		}
+		// function onSuccess(contacts) {
+  // 			supersonic.logger.log( JSON.stringify(contacts[0]) );
+  // 			$scope.$apply(function(){
+  // 				$scope.contacts = contacts;
+  // 			});
+		// }
+		// function onError(err){
+		// 	supersonic.logger.log(JSON.stringify(err));
+		// }
+		navigator.contacts.pickContact( function(contact) {
+				// if(contact.name) { // If user did not press cancel
+				// 	var name = contact.name.formatted;
+				// 	var email = contact.emails? contact.emails[0].value : "";
+				// 	var phone = contact.phoneNumbers? contact.phoneNumbers[0].value.replace(/[ \(\)-]/g, "") : "";
+
+				// 	document.getElementById("name").value = name;
+				// 	document.getElementById("email").value = email;
+				// 	document.getElementById("phone").value = phone;
+				// 	document.getElementById("interval").value = "1";
+				// }
+		}, function(err) {
+			alert('Error at AddController.js: ' + err);
+		});
 	}
 
 	$scope.removeEmptyContacts = function(contact) {

@@ -13,52 +13,66 @@
 	</div>
 </div> -->
 
-<div ng-controller="FriendRequestController">
+<div ng-controller="FriendRequestController" ng-class="{contactList: contactList}">
 	<div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
 
 	<div ng-hide="showSpinner">
 	<!-- all within show spinner -->
+		<div class="list" ng-hide="contactList">
+			<div ng-show="friendRequests.length">
+				<div class="item item-divider"> Don't leave me hanging! </div>
+				<ul class="list">
+					<li class="card" ngclick="show()" ng-repeat="request in friendRequests">
+						<h2 class="item item-row">{{request.senderName}} wants to be buddies!</h2>
+						<div class="item item-body">
+							<button class="button button-balanced icon super-checkmark-circled" ng-click="acceptFriendRequest(request)">  Accept</button>
+							<button class="button button-assertive icon super-close-circled" ng-click="rejectFriendRequest(request)">  Reject</button>
+						</div>
+					</li>
+				</ul>
+			</div>
 
-	<div class="list">
-		<div ng-show="friendRequests.length">
-			<div class="item item-divider"> Don't leave me hanging! </div>
+
+			<div class="item item-divider">The Happenings</div>
 			<ul class="list">
-				<li class="card" ngclick="show()" ng-repeat="request in friendRequests">
-					<h2 class="item item-row">{{request.senderName}} wants to be buddies!</h2>
-					<div class="item item-body">
-						<button class="button button-balanced icon super-checkmark-circled" ng-click="acceptFriendRequest(request)">  Accept</button>
-						<button class="button button-assertive icon super-close-circled" ng-click="rejectFriendRequest(request)">  Reject</button>
+				<li class="item item-button-right" ng-init="showText=false" ng-click="showText=!showText">
+					<div ng-hide="showText">
+						<span ng-hide="showText" class="username">{{curUser.username}}</span>
 					</div>
+					<span ng-hide="!showText" class="status">{{getStatus(curUser)}}</span>
+					<button class="button button-positive" ng-click="handlePersonalStatus()">
+						<i class="icon super-compose"></i>
+					</button>
+				</li>
+				<!-- Note that right now what I call statuses is just users until the future -->
+				<li class="item item-button-right" ng-click="showText=!showText" ng-init="showText=false" ng-repeat="user in statuses">
+					<div ng-hide="showText">
+						<span ng-hide="showText" class="username">{{user.username}}</span>
+						<!-- <span class="item-note refives">+ {{status.refives}}</span> -->
+					</div>
+					<span ng-show="showText" class="status">{{getStatus(user)}}</span>
+					<!-- <button class="button button-outline button-positive" ng-click="replyFive(status)">
+						<i class="icon super-android-hand"></i>
+					</button> -->
 				</li>
 			</ul>
 		</div>
 
-
-		<div class="item item-divider">The Happenings</div>
-		<ul class="list">
-			<li class="item item-button-right" ng-init="showText=false" ng-click="showText=!showText">
-				<div ng-hide="showText">
-					<span ng-hide="showText" class="username">{{curUser.username}}</span>
-				</div>
-				<span ng-hide="!showText" class="status">{{getStatus(curUser)}}</span>
-				<button class="button button-positive" ng-click="handlePersonalStatus()">
-					<i class="icon super-compose"></i>
+		<div ng-show="contactList">
+			<div class="bar bar-header item-input-inset">
+				<label class="item-input-wrapper">
+					<i class="icon super-ios-person placeholder-icon"></i>
+					<input type="text" placeholder="Add by Username" ng-model="username">
+				</label>
+				<button class="button button-clear" ng-click="addByUsername(username);username=''">
+				    Add
 				</button>
-			</li>
-			<!-- Note that right now what I call statuses is just users until the future -->
-			<li class="item item-button-right" ng-click="showText=!showText" ng-init="showText=false" ng-repeat="user in statuses">
-				<div ng-hide="showText">
-					<span ng-hide="showText" class="username">{{user.username}}</span>
-					<!-- <span class="item-note refives">+ {{status.refives}}</span> -->
-				</div>
-				<span ng-show="showText" class="status">{{getStatus(user)}}</span>
-				<!-- <button class="button button-outline button-positive" ng-click="replyFive(status)">
-					<i class="icon super-android-hand"></i>
-				</button> -->
-			</li>
-		</ul>
-
-	</div>
+			</div>
+			<img src="/img/baby.png" class="full-image">
+			<p style="color:white; text-align:center; font-weight:bold;">Hi<span style="color:orange;">5</span>'ing Yourself. That's for Babies.<br/>You're not a baby.</p>
+			<button class="button button-balanced" ng-click="addByContact()" style="display:block; margin: auto; margin-bottom: 10px;">Add By Contact</a>
+			<button class="button button-block button-assertive" ng-click="contactList=false">Close</a>
+		</div>
 
 	<!-- end show spinner -->
 	</div>
