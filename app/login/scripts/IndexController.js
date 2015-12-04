@@ -27,6 +27,14 @@ angular
            curve: "easeInOut"
         };
 
+        steroids.audio.prime({}, {
+          onSuccess : function(){
+            supersonic.logger.log("Primed for audio");
+          },
+          onFailure : function(){
+            supersonic.logger.log("Failed priming for audio");
+          }
+        });
         var animation = supersonic.ui.animate("slideFromLeft",options);
         supersonic.ui.initialView.dismiss(animation);
     }

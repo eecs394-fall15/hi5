@@ -1,6 +1,6 @@
 angular
   .module('hi5')
-  .controller('MailboxController', function($scope, supersonic, Requests, Utility, Accelerometer, $interval) {
+  .controller('MailboxController', function($scope, supersonic, HighfiveData, Requests, Utility, Accelerometer, $interval) {
     $scope.showSpinner = true;
     $scope.highfives = null;
     var first = true;
@@ -85,12 +85,28 @@ angular
       Requests.viewHighfive(highfive, function(highfive){
         var viewURL = 'hi5#view'
         var view = new supersonic.ui.View(viewURL);
+        var typeData = JSON.parse(highfive.type);
+        var type = typeData.type;
+        var subtype =  typeData.subtype;
 
         var options = {
           params: {
-            id: highfive.id
+            id: highfive.id,
+            type : type,
+            subType: subtype
           }
         };
+
+        supersonic.logger.log(type);
+        supersonic.logger.log(subtype);
+
+        var subtypeData = HighfiveData[type].subtypes.filter(function(val){
+            return val['id'] === subtype;
+        });
+
+        // supersonic.logger.log(JSON.stringify(subtypeData));
+
+        var delay = subtypeData[0].length;
 
         supersonic.ui.layers.push(view, options).then(function(){
           setTimeout(function(){
@@ -99,7 +115,7 @@ angular
               animation: nullAnimation
             }
             supersonic.ui.layers.pop();
-          }, 4000);
+          }, delay);
         });
       });
     };

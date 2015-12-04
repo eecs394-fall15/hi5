@@ -20,26 +20,30 @@ angular
 			id : 'classic',
 			display :  'The Classic',
 			imgSrc: '/hands/theclassic.png',
+			audioSrc : '/audio/highfives/classicClap.mp3',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
-			length: 2000,
+			length: 4000,
 		},{
 			id : 'fact',
 			display :  'Fact!',
 			imgSrc: '/hands/fact.gif',
+			audioSrc : '/audio/highfives/factJackClap.mp3',
 			thumbnailSrc: '/hands/thumbnails/fact.gif',
-			length : 2000,
+			length : 4000,
 		},{
 			id : 'blackhawksBump',
 			display :  'Da Blackhawks Bump',
 			imgSrc: '/hands/blackhawk.png',
+			audioSrc : '/audio/highfives/blackhawksGoalHorn.mp3',
 			thumbnailSrc: '/hands/thumbnails/blackhawk.png',
-			length : 2000,
+			length : 6500,
 		},{
 			id : 'wildcatz',
 			display :  'Go Catz!',
 			imgSrc: '/hands/catz.png',
+			audioSrc : '/audio/highfives/wildcatGrowlClap.mp3',
 			thumbnailSrc: '/hands/thumbnails/catz.png',
-			length: 2000
+			length: 4000
 		}]
 	},
 
@@ -53,19 +57,19 @@ angular
 			display :  'Incoming!',
 			imgSrc: '',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
-			length : 2000
+			length : 4000
 		},{
 			id : 'ontheway',
 			display :  'On the way',
 			imgSrc: '',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
-			length : 2000
+			length : 4000
 		},{
 			id : 'goingOut',
 			display :  'Going out',
 			imgSrc: '',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
-			length : 2000
+			length : 4000
 		}]
 	},
 
@@ -79,25 +83,25 @@ angular
 			display :  'Dunkfive!',
 			imgSrc: '',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
-			length : 2000
+			length : 4000
 		},{
 			id : 'inBag',
 			display :  'It\' in the bag!',
 			imgSrc: '',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
-			length : 2000
+			length : 4000
 		},{
 			id : 'killinGame',
 			display :  'Killing the Game!',
 			imgSrc: '',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
-			length : 2000
+			length : 4000
 		},{
 			id : 'down',
 			display :  "I'm down",
 			imgSrc: '',
 			thumbnailSrc: '/hands/thumbnails/theclassic.png',
-			length : 2000
+			length : 4000
 		}]
 	}//,
 

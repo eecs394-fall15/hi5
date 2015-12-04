@@ -4,6 +4,7 @@ angular
       $scope.show = true;
       $scope.dataId = undefined;
       $scope.imgSrc = null;
+      $scope.audioSrc = null;
 
       var animate = function() {
         setTimeout(function(){
@@ -17,6 +18,18 @@ angular
             });
           })
           supersonic.device.vibrate();
+          steroids.audio.play({
+            path: $scope.audioSrc,
+            relativeTo: steroids.app.path
+          }, {
+            onSuccess: function() {
+              supersonic.logger.log("audio is playing");
+            },
+            onFailure: function(error) {
+              supersonic.logger.log("could not play audio: " + error.errorDescription);
+            }
+          });
+
         }, 2000);
       }
 
@@ -39,6 +52,7 @@ angular
 
           $scope.$apply(function() {
             $scope.imgSrc = subtypeData[0].imgSrc;
+            $scope.audioSrc = subtypeData[0].audioSrc;
             supersonic.logger.log($scope.imgSrc);
           });
 
