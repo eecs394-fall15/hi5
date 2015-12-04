@@ -46,6 +46,13 @@ angular
         });
       });
 
+      newBtn = new supersonic.ui.NavigationBarButton({
+      });
+
+      supersonic.ui.navigationBar.update({
+        overrideBackButton: true,
+      }).then(supersonic.ui.navigationBar.show());
+
       // supersonic.ui.views.current.params.onValue( function(params) {
       //   supersonic.logger.log(params['type']);
       //   var data = HighfiveData[params['type']].subtypes.filter(function(val, index, array) {

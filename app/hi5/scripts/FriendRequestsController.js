@@ -109,13 +109,10 @@ angular
 
     function loadFriends(){
       Requests.loadFriends(function(users) {
-        $scope.$apply( function () {
           $scope.statuses = users.map(function(user){
             user.selected=false;
             return user;
           });
-          $scope.showSpinner = false;
-        });
       });
     }
 
