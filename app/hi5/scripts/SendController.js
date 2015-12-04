@@ -5,6 +5,7 @@ angular
     $scope.showSpinner = true;
     var selectedRecipients = null;
     var firstLoad = true;
+    $scope.help = false;
 
     var unsubscribe = supersonic.data.channel('highfiving').subscribe(function(message, reply) {
         supersonic.logger.log(message);
@@ -26,8 +27,9 @@ angular
     supersonic.ui.views.current.whenVisible( function() {
       if (firstLoad){
         loadFriends();
-        firstLoad = false;
+        // firstLoad = false;
       }
+      //TODO: Check cache for if first login
     });
 
     $scope.clearUsers = function(){
@@ -52,6 +54,28 @@ angular
       supersonic.ui.modal.show(view, {animation: customAnimation});
     };
 
+    $scope.toggleHelp = function(){
+      supersonic.logger.log("Toggling help");
+      
+      $scope.$apply(function() {
+        $scope.help = !$scope.help;
+      });
+    }
+
+
+    helpBtn = new supersonic.ui.NavigationBarButton({
+      onTap: $scope.toggleHelp,
+      styleId: "nav-refresh"
+    });
+
+    supersonic.ui.navigationBar.update({
+      title: "Send Hi5's",
+      overrideBackButton: false,
+      buttons: {
+        right: [helpBtn]
+      }
+    }).then(supersonic.ui.navigationBar.show());
+
 
     function getSelectedUsers(){
       var ret = $scope.users.filter(function(user){
@@ -72,6 +96,7 @@ angular
         $scope.$apply( function () {
           $scope.users = users;
           $scope.showSpinner = false;
+          $scope.enableButtons = enableButtons();
         });
       });
     }

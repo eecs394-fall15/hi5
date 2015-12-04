@@ -1,7 +1,7 @@
 angular
   .module('hi5')
   .controller('ContactListController', function($scope, supersonic, Requests) {
-    $scope.contacts = null
+    $scope.contacts = [];
     var numberPattern = /\d+/g;
 
     $scope.leaveList = function(){

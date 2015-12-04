@@ -1,13 +1,13 @@
 <div ng-controller="SendController" class="send">
 
-  <super-navbar>
+  <!-- <super-navbar>
     <super-navbar-title>
       Send
     </super-navbar-title>
-  </super-navbar>
+  </super-navbar> -->
 
   <div ng-show="showSpinner" ng-include="'_spinner.html'"></div>
-  <div ng-hide="showSpinner">
+  <div ng-hide="showSpinner || help">
     <div ng-hide="highfive" ng-class="{sendhighfive: enableButtons}">
 
       <!-- List of friends -->
@@ -39,14 +39,29 @@
         </button>
       </div>
     </div>
+  </div > <!-- end show spinner div -->
 
+<!-- pops up when getting  help -->
+  <div class="popup" ng-show="help">
+    <h1>How to Send a Hi5</h1>
 
-    <!-- pops up when recording accelerometer -->
-    <div class="popup" ng-show="watching">
-      <h1>Start High Fiving</h1>
-      <div class="padding">
-        <button ng-click="stopHiFive()" class="button button-block button-outline button-assertive">Stop</button>
+    <div class="padding">
+      <div class ="text-center">
+        <h3 class="text-center">Step 1</h3>
+        <p>Choose recipients and press send</p>
       </div>
+
+      <div class ="text-center">
+        <h3 class="text-center">Step 2</h3>
+        <p>Wave Phone in Hi5 Motion</p>
+      </div>
+
+      <div class ="text-center">
+        <h3 class="text-center">Step 3</h3>
+        <p>Choose Hi5 Hand</p>
+      </div>
+      <button ng-click="toggleHelp()" class="button button-block button-assertive">Awesome, got it.</button>
     </div>
-  </div>
-</div>
+
+  </div> <!-- end help popup -->
+</div><!-- end send class div -->
