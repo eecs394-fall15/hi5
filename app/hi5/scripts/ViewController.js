@@ -12,10 +12,11 @@ angular
               height: '100%',
               width: '100%'
             }, {
-              speed: 2000,
-              easing: "linear"
+              speed: 6000,
+              easing: "swing"
             });
           })
+          supersonic.device.vibrate();
         }, 2000);
       }
 
