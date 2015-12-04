@@ -13,8 +13,10 @@ angular
     // };
 
     var iconClasses = {
-      UNOPENED_RECEIVED : "super-ios-paw",
-      OPENED_RECEIVED : "super-ios-paw-outline",
+      // UNOPENED_RECEIVED : "super-ios-paw",
+      UNOPENED_RECEIVED : "super-android-hand",
+      // OPENED_RECEIVED : "super-ios-paw-outline",
+      OPENED_RECEIVED : "super-ios-circle-outline",
       UNOPENED_SENT : "super-ios-paperplane-outline",
       OPENED_SENT : "super-ios-paperplane"
     };

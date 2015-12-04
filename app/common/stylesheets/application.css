@@ -134,6 +134,13 @@ html, body {
 
 .selection {
   background-color: black !important;
+}
+
+.send-selection{
+  background-color: rgba(0, 192,245, 1);
+  font-weight: 700;
+  color: white;
+}
 
 .popup-list {
   background: rgba(0,0,0,.8);
@@ -146,5 +153,6 @@ html, body {
 }
 
 .popup-list .item {
+  border-color: #d35400;
   background: rgba(0,0,0,.8);
 }

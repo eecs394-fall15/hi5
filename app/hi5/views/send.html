@@ -12,7 +12,7 @@
 
       <!-- List of friends -->
       <ul class="list" ng-hide="users.length == 0">
-        <li class="item item-checkbox" ng-repeat="user in users">
+        <li ng-class="{'send-selection': user.selected}" class="item item-checkbox" ng-repeat="user in users">
           <label class="checkbox">
             <input type="checkbox" ng-model="user.selected" ng-change="select(user)"></input>
           </label>
@@ -34,7 +34,8 @@
         </button>
 
         <button class="button button-full button-dark"
-          ng-click="clearUsers()">
+          ng-click="clearUsers()"
+          style="background-color:#c0392b;border-color:white">
           Clear
         </button>
       </div>
@@ -42,19 +43,19 @@
   </div > <!-- end show spinner div -->
 
   <!-- pops up when getting  help -->
-    <div class="popup text-center white" ng-show="help">
-          <h3 class="white">Step 1</h3>
-          <img src="/img/howto/step1.png" class="thumbnail howto-img"></img>
-          <p>Select buddies and hit send</p>
+  <div class="popup text-center white" ng-show="help">
+        <h3 class="white">Step 1</h3>
+        <img src="/img/howto/step1.png" class="thumbnail howto-img"></img>
+        <p>Select buddies and hit send</p>
 
-          <h3 class="white">Step 2</h3>
-          <img src="/img/howto/step2.png" class="thumbnail howto-img"></img>
-          <p>Wave Phone in Hi5 Motion</p>
+        <h3 class="white">Step 2</h3>
+        <img src="/img/howto/step2.png" class="thumbnail howto-img"></img>
+        <p>Wave Phone in Hi5 Motion</p>
 
-          <h3 class="white">Step 3</h3>
-          <img src="/img/howto/step3.png" class="thumbnail howto-img"></img>
-          <p>Experience awesomeness</p>
-        <button ng-click="toggleHelp()" class="button button-assertive">Awesome, I'm ready to send a Hi5!</button>
-    </div> <!-- end help popup -->
+        <h3 class="white">Step 3</h3>
+        <img src="/img/howto/step3.png" class="thumbnail howto-img"></img>
+        <p>Experience awesomeness</p>
+        <button ng-click="closeHelp()" class="button button-assertive" >Awesome, I'm ready to send a Hi5!</button>
+  </div> <!-- end help popup -->
 
 </div><!-- end send class div -->

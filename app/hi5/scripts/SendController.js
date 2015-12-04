@@ -3,8 +3,10 @@ angular
   .controller('SendController', function($scope, supersonic, Requests, Accelerometer) {
     $scope.users = [];
     $scope.showSpinner = true;
+    $scope.dummyTrue = true;
     var selectedRecipients = null;
     var firstLoad = true;
+
     $scope.help = false;
 
     var unsubscribe = supersonic.data.channel('highfiving').subscribe(function(message, reply) {
@@ -24,9 +26,16 @@ angular
       selectedRecipients = [message];
     });
 
+
+
     supersonic.ui.views.current.whenVisible( function() {
       if (firstLoad){
         loadFriends();
+        var firstUse = localStorage.getItem('firstUse');
+        if(firstUse === null){
+          localStorage.setItem('firstUse', false);
+          $scope.help = true;
+        }
         // firstLoad = false;
       }
       //TODO: Check cache for if first login
@@ -55,8 +64,13 @@ angular
     };
 
     $scope.toggleHelp = function(){
-      supersonic.logger.log("Toggling help");
+      $scope.$apply(function(){
         $scope.help = !$scope.help;
+      });
+    };
+
+    $scope.closeHelp = function(){
+      $scope.help = false;
     }
 
     helpBtn = new supersonic.ui.NavigationBarButton({
