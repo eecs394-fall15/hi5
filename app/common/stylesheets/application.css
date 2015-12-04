@@ -101,6 +101,8 @@ html, body {
   right: 0;
   background: rgba(0,0,0,.8);
   color: white !important;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .popup h1 {
