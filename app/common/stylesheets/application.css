@@ -100,7 +100,7 @@ html, body {
   bottom: 0;
   right: 0;
   background: rgba(0,0,0,.8);
-  color: white;
+  color: white !important;
 }
 
 .popup h1 {
@@ -110,18 +110,26 @@ html, body {
   color: white;
 }
 
+.popup *{
+  color: white;
+}
+
+
 .circle {
   border-radius: 50%;
   border-width: 2px;
 }
 
-.text-centered {
-  text-align: center;
+.thumbnail {
+  height: 85px;
+  width: auto;
 }
 
-.thumbnail {
-  height: 100px;
-  width: auto;
+.howto-img {
+  background-color: white;
+  border-style: solid;
+  border-width: 5px;
+  border-color: orange;
 }
 
 .selection {

@@ -14,7 +14,7 @@
       <ul class="list" ng-hide="users.length == 0">
         <li class="item item-checkbox" ng-repeat="user in users">
           <label class="checkbox">
-            <input type="checkbox" ng-model="user.selected" ng-change="select(user)">
+            <input type="checkbox" ng-model="user.selected" ng-change="select(user)"></input>
           </label>
           {{user.username}}
         </li>
@@ -27,7 +27,7 @@
 
       <!-- Buttons to send and clear selections -->
       <div class="footer" ng-if="enableButtons">
-        <button 
+        <button
           class="button button-full button-calm icon super-paper-airplane"
           ng-click="startHighfiving()">
           Send
@@ -41,27 +41,20 @@
     </div>
   </div > <!-- end show spinner div -->
 
-<!-- pops up when getting  help -->
-  <div class="popup" ng-show="help">
-    <h1>How to Send a Hi5</h1>
+  <!-- pops up when getting  help -->
+    <div class="popup text-center" ng-show="help">
+          <h3>Step 1</h3>
+          <img src="/img/howto/step1.png" class="thumbnail howto-img"></img>
+          <p>Select buddies and hit send</p>
 
-    <div class="padding">
-      <div class ="text-center">
-        <h3 class="text-center">Step 1</h3>
-        <p>Choose recipients and press send</p>
-      </div>
+          <h3>Step 2</h3>
+          <img src="/img/howto/step2.png" class="thumbnail howto-img"></img>
+          <p>Wave Phone in Hi5 Motion</p>
 
-      <div class ="text-center">
-        <h3 class="text-center">Step 2</h3>
-        <p>Wave Phone in Hi5 Motion</p>
-      </div>
+          <h3>Step 3</h3>
+          <img src="/img/howto/step3.png" class="thumbnail howto-img"></img>
+          <p>Experience awesomeness</p>
+        <button ng-click="toggleHelp()" class="button button-assertive">Awesome, I'm ready to send a Hi5!</button>
+    </div> <!-- end help popup -->
 
-      <div class ="text-center">
-        <h3 class="text-center">Step 3</h3>
-        <p>Choose Hi5 Hand</p>
-      </div>
-      <button ng-click="toggleHelp()" class="button button-block button-assertive">Awesome, got it.</button>
-    </div>
-
-  </div> <!-- end help popup -->
 </div><!-- end send class div -->

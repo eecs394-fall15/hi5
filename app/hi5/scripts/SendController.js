@@ -56,16 +56,12 @@ angular
 
     $scope.toggleHelp = function(){
       supersonic.logger.log("Toggling help");
-      
-      $scope.$apply(function() {
         $scope.help = !$scope.help;
-      });
     }
-
 
     helpBtn = new supersonic.ui.NavigationBarButton({
       onTap: $scope.toggleHelp,
-      styleId: "nav-refresh"
+      styleId: "nav-help"
     });
 
     supersonic.ui.navigationBar.update({
@@ -114,6 +110,6 @@ angular
           $scope.watching = false;
           $scope.clearUsers();
         });
-      });  
+      });
     }
 });

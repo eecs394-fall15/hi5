@@ -41,6 +41,14 @@ navigation-bar back-button {
   background-image: url(icons/ios-refresh-outline.svg);
 }
 
+#nav-logout icon {
+  background-image: url(icons/openDoor.svg);
+}
+
+#nav-help icon {
+  background-image: url(icons/help.svg);
+}
+
 /**************************************
  *  Tab Bar
  *************************************/
