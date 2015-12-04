@@ -1,6 +1,6 @@
 angular
   .module('hi5')
-  .controller('MailboxController', function($scope, supersonic, Requests, Utility, Accelerometer) {
+  .controller('MailboxController', function($scope, supersonic, Requests, Utility, Accelerometer, $interval) {
     $scope.showSpinner = true;
     $scope.highfives = null;
     var first = true;
@@ -29,15 +29,17 @@ angular
     };
 
 
-
+    
     $scope.loadHighfives = function(){
-      supersonic.logger.log("Requesting highfives");
-      Requests.loadHighfives(function(highfives){
-        $scope.$apply(function(){
-          $scope.showSpinner = false;
-          $scope.highfives = highfives;
+      $scope.longPull = $interval(function(){
+        supersonic.logger.log("Requesting highfives");
+        Requests.loadHighfives(function(highfives){
+          $scope.$apply(function(){
+            $scope.showSpinner = false;
+            $scope.highfives = highfives;
+          });
         });
-      });
+      }, 5000);
     };
 
     $scope.clickHighfiveItem = function(highfive){
@@ -123,6 +125,11 @@ angular
 
     supersonic.ui.views.current.whenVisible( function() {
       $scope.loadHighfives();
+    });
+    supersonic.ui.views.current.whenHidden( function() {
+      $interval.cancel($scope.longPull);
+      $scope.longPull = undefined;
+      supersonic.logger.log("This view is now hidden");
     });
 
 });
