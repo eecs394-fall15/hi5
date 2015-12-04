@@ -5,16 +5,23 @@ angular
     $scope.highfives = null;
     var first = true;
 
+    // var iconClasses = {
+    //   UNOPENED_RECEIVED : "super-ios-circle-filled",
+    //   OPENED_RECEIVED : "super-ios-circle-outline",
+    //   UNOPENED_SENT : "super-ios-paperplane-outline",
+    //   OPENED_SENT : "super-ios-paperplane"
+    // };
+
     var iconClasses = {
-      UNOPENED_RECEIVED : "super-ios-circle-filled",
-      OPENED_RECEIVED : "super-ios-circle-outline",
+      UNOPENED_RECEIVED : "super-ios-paw",
+      OPENED_RECEIVED : "super-ios-paw-outline",
       UNOPENED_SENT : "super-ios-paperplane-outline",
       OPENED_SENT : "super-ios-paperplane"
     };
+    
 
     $scope.reply = function(highfive) {
       supersonic.logger.log('SWIPED');
-      // initWatching(highfive.sender);
       supersonic.data.channel('recipients').publish(highfive.sender);
       $scope.startHighfiving();
     };
