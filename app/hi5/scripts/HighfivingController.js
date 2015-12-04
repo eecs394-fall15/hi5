@@ -2,7 +2,7 @@ angular
 .module('hi5')
 .controller('HighfivingController', function($scope, supersonic, HighfiveData, Accelerometer) {
     //data to return
-    $scope.selectedType = null;
+    $scope.selectedType = 'BASIC';
     $scope.selectedSubtype = null;
 
     //used for UI
@@ -12,6 +12,8 @@ angular
 
     //data for displaying
     $scope.highfiveTypes = HighfiveData;
+
+    /***** UI FUNCTIONS *******/
 
     $scope.chooseHighfiveTypeUI = function(){
       $scope.state = 'choosingType';
@@ -27,11 +29,6 @@ angular
       $scope.prompt = "Choose Hi5"
     };
 
-    $scope.startSimulation = function(){
-      $scope.simulating = true;
-      $scope.initWatching();
-    };
-
     $scope.selectHighfiveType = function (highfiveType) {
       supersonic.logger.log("Selected : " + highfiveType);
       $scope.selectedType = highfiveType;
@@ -42,6 +39,11 @@ angular
       //TODO: enter code for return highfive type selected
       supersonic.logger.log("Selected : " + highfiveSubtype.id);
       $scope.selectedSubtype = highfiveSubtype.id;
+
+      $scope.initWatching();
+    };
+
+    $scope.exit = function(){ 
       supersonic.data.channel('highfiving').publish(JSON.stringify({
         type: $scope.selectedType,
         subtype : $scope.selectedSubtype
@@ -58,7 +60,7 @@ angular
         $scope.retry = false;
         $scope.showSpinner = true;
 
-        Accelerometer.start(function(err, motion){
+        Accelerometer.start(function(err, motion) {
           supersonic.logger.log("Deleting acc data: " + Accelerometer.clearData());
           $scope.showSpinner = false;
 
@@ -74,8 +76,9 @@ angular
               }
             } else {
               $scope.$apply(function(){
-                $scope.selectHighfiveType(motion);
-              });
+                // $scope.selectHighfiveType(motion);
+                $scope.exit();
+              });  
             }
           }
         }, 2000);
@@ -91,6 +94,6 @@ angular
     }
 
     supersonic.ui.views.current.whenVisible( function() {
-      $scope.initWatching();
+      $scope.chooseHighfiveSubtypeUI();
     });
 });

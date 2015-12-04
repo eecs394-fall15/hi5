@@ -37,14 +37,16 @@
 			<h2 class="text-centered" style="color:white">{{prompt}}</h2>
 			<div class="list popup-list">
 				<a class="item item-thumbnail-left" href="#" ng-repeat="value in highfiveTypes[selectedType].subtypes" ng-click="selectHighfiveSubtype(value)">
+				{{value}}
 					<img style="background:white" ng-src="{{value.thumbnailSrc}}">
 					<h2 class="highfive-title">{{value.display}}</h2>
 					<p> {{value.description}}</p>
 				</a>
 			</div>
 		</div>
-		<button class="footer button icon-left super-chevron-left button-block button-positive" ng-click="chooseHighfiveTypeUI()">
+    	<button ng-click="stopHiFive()" class="footer button button-block button-outline button-assertive">Cancel</button>
+		<!-- <button class="footer button icon-left super-chevron-left button-block button-positive" ng-click="chooseHighfiveTypeUI()">
 			Back to Hi5 Types
-		</button>
+		</button> -->
 	</div>
 </div>
