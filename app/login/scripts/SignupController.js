@@ -7,8 +7,8 @@ var errs = {
 
 angular
 .module('login')
-.controller('SignupController', function($scope, supersonic, User){	
-	
+.controller('SignupController', function($scope, supersonic, User){
+
 	$scope.user = {
 		username : "",
 		password : "",
@@ -18,14 +18,14 @@ angular
 	$scope.optional = false;
 
     $scope.submitForm = function () {
-    	var errors = validateUser($scope.user);
+    	var errors = $scope.validateUser($scope.user);
 
     	if  (errors.length > 0){
     		var options = {
     			message : errors.join('\n'),
     			buttonLabel : 'Close'
     		};
-    	
+
 
     		supersonic.ui.dialog.alert('Signup Issues', options);
     	} else {
@@ -44,7 +44,7 @@ angular
 		}
     };
 
-    function validateUser(user){
+    $scope.validateUser = function(user){
     	var errors = [];
     	console.log("testing user");
     	if (!validatePassword(user.password)){
@@ -72,7 +72,7 @@ angular
     }
 
     function validateUsername(username){
-    	return username.length >= 4 
+    	return username.length >= 4
     }
 
     function checkUsernameUnique(username){

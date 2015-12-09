@@ -19,7 +19,7 @@ Parse.Cloud.afterSave("Highfive", function(request) {
 	Parse.Push.send({
 		where: pushQuery, // Set our Installation query
 		data: {
-		  alert: "New highfive from " + senderName
+		  alert: "New highfive from " + senderName,
 		  senderName : senderName,
 		  highfive : highfive
 		}
@@ -39,16 +39,16 @@ Parse.Cloud.afterSave("Highfive", function(request) {
 Parse.Cloud.afterSave("FriendRequest", function(request) {
 	//request.object is the object being saved
   var senderName = request.object.get('senderName');
- 
+
   var pushQuery = new Parse.Query(Parse.Installation);
   var channels = [request.object.get('receiver')];
   pushQuery.equalTo('channels', channels);
-    
+
   Parse.Push.send({
     where: pushQuery, // Set our Installation query
     data: {
-      alert: "Buddy Request from " + senderName
-      senderName : senderName
+      alert: "Buddy Request from " + senderName,
+      senderName: senderName
     }
   }, {
     success: function() {
@@ -65,13 +65,13 @@ Parse.Cloud.afterSave("FriendRequest", function(request) {
 // Accept Friend request
 Parse.Cloud.define("acceptFriendRequest", function(request, response) {
   Parse.Cloud.useMasterKey();
- 
+
   var senderID = request.sender;
   var receiver = Parse.User.current();
- 
+
   query = new Parse.Query(Parse.User);
   query.equalTo('objectId', senderID);
- 
+
   query.find({useMasterKey: true})
   .then(function(res) {
     sender = res;
